@@ -1,0 +1,3 @@
+[submodule "LoanApp"]
+	path = LoanApp
+	url = https://github.com/ch910322/credit-white.git
