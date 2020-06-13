@@ -1,0 +1,6 @@
+begin
+  
+  Exec_file("halcust\\LoanApp\\datadef.hal");
+
+  return;
+end;
