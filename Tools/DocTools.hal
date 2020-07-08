@@ -1,0 +1,18 @@
+
+global
+function Boolean Ext_SkipInvoiceRow(record IVVc IVr,row IVVc IVrw,Integer i)
+begin
+  record CMInvoicingBlock CIb;
+  Boolean res;
+
+  BlockLoad(CIb);
+
+  if (CIb.DetailedInvoice==1) then begin
+    if (i<3) then begin
+      res = true;
+    end;
+  end;
+
+  Ext_SkipInvoiceRow = res;
+  return;
+end;
