@@ -16,3 +16,18 @@ begin
   Ext_SkipInvoiceRow = res;
   return;
 end;
+
+global
+function Boolean Ext_GetPDFInvoiceName(record IVVc IVr,var string fname) 
+begin
+  Boolean res;
+
+  res = true;
+  if (nonblank(IVr.OfficialSerNr)) then begin
+    fname = USetStr(1808) & IVr.OfficialSerNr & ".pdf";
+  end else begin
+    fname = USetStr(1808) & IVr.SerNr & ".pdf";
+  end;
+  Ext_GetPDFInvoiceName = res;
+  return;
+end;
