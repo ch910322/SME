@@ -817,7 +817,7 @@ begin
     if (TrHs) then begin
       RecordCopy(oldCredManr,CredManr);
       oldCredManr.OKFlag = 0;
-      SetRecordCheckVc("CredManVc");
+      SetRecordCheckVc("CredManVc");//CUST-ADDED >> caused crashed without this
       if (CredManVcRecordCheck(CredManr,oldCredManr,updatemode,0)==0) then begin
       end else begin
 LogText(0,"Create N/L Transaction failed for Credit Man " & CredManr.SerNr & " RECORDCHECKLASTERRORNO " & RECORDCHECKLASTERRORNO);
