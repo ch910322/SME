@@ -1,0 +1,26 @@
+
+global
+procedure SME_IVJRClassReportDefaults(Integer wn)
+begin
+  record RcVc RepSpec;
+  string 255 tstr;
+  
+  DeselectWindow(wn,false);
+  GetWindowRecord(wn,RepSpec);
+  ReportDefaults(RepSpec,"SME_IVJRClass");  
+  RepSpec.ArtMode = 0;
+  RepSpec.flags[1] = 0;
+  RepSpec.flags[2] = 1;
+  RepSpec.flags[3] = 1;
+  RepSpec.flags[4] = 1;
+  RepSpec.flags[5] = 1;
+  RepSpec.flags[6] = 1;
+  RepSpec.flags[15] = 1;
+  RepSpec.flags[16] = 1;
+  RepSpec.flags[24] = 1;
+  RepSpec.flags[25] = 1;
+  
+  PutWindowRecord(wn,RepSpec);
+  SelectWindow(wn);
+  return;
+end;

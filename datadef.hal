@@ -5,6 +5,9 @@ begin
   SourceFile("halcust\\Level0\\Maint",0);
   SourceFile("halcust\\Level0\\Documents",0);
   SourceFile("halcust\\Tools",3);
+  SourceFile("halcust\\English",3);
+  SourceFile("halcust\\Reports",3);
+  SourceFile("halcust\\WActions",3);
 
   return;
 end;

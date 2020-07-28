@@ -1,0 +1,110 @@
+external function string 60 UserDefined(string,string);
+external function Boolean HasCustomerSearchKey();
+external function Boolean HasCategories();
+external function Boolean HasDepartments();
+external function Boolean HasStandardCommunicator();
+external function Boolean CUVATNrColumn;
+external function Boolean HasLimitedAccess();
+external function Boolean HasCustomerStatusReport();
+external outer function Boolean HasB2BCreateOffer();
+
+
+window SME_IVJRClass:3
+  wtag("language","ENG"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  real h,h2,hs,v,v3,vm,vs,l;
+
+  WindowBegin("Specify Invoice Journal",IVJRClass,CGRcW,RcType);
+  SetWRect(20,80,520,390);
+  vs = 20;
+  hs = 148;
+  Tile(0,40,false,"",f1);
+
+  v = 6; h = 150;
+  EditFieldTL(h,v,150,"Invoice No.",M4Str,Normal,30,f1,false,0);
+  v = v + 20;
+  EditFieldTL(h,v,150,"Official No.",M4UStr,Normal,41,f6,false,0);
+  v = v + 20;
+
+  TileButtons(v,2);
+  Tile(1,380,false,"1",f2);
+  v = 6;
+  vm = v;
+  PeriodField(h,v,"Period");
+  EditFieldTL(h,v+=vs, 150,"Credited Invoice Period",M4UStr,Normal,21,Period2Str2,false,PerSClass);
+  EditFieldTL(h,v+=vs ,150,"Customer",M4UStr,Normal,50,f2,false,CUSClass);
+  EditFieldTL(h,v+=vs ,70,"Customer Category",M4UStr,Normal,5,f3,false,CCatSClass);
+  EditFieldTL(h,v+=vs ,70,"Classification Types",M4UStr,Normal,60,f5,false,CTypeSClass);
+  EditFieldTL(h,v+=vs ,70,"Customer Classification",M4UStr,Normal,30,f4,false,CClassSClass);
+  EditFieldTL(h,v+=vs ,70,"#Salesman#",M4UStr,Normal,10,AccStr,false,UserSClass);
+  EditFieldTL(h,v+=vs ,50,"Sales Group",M4UStr,Normal,10,f14,false,SalesGroupSClass);
+  EditFieldTL(h,v+=vs,250,"Tag/Object",M4UStr,Normal,60,ObjStr,false,ObjSClass);
+  EditFieldTL(h,v+=vs,50,"Tag/Object Type",M4UStr,Normal,5,ObjType,false,OTSClass);
+  EditFieldTL(h,v+=vs,250,"Tags/Objects (from Row)",M4UStr,Normal,60,f11,false,ObjSClass);
+  EditFieldTL(h,v+=vs,50,"Project",M4UStr,Normal,20,FirstAcc,false,PRSClass);
+  EditFieldTL(h,v+=vs,70,"Location",M4UStr,Normal,60,LastAcc,false,LocationSClass);
+  EditFieldTL(h,v+=vs,50,"Payment Term",M4UStr,Normal,5,TransStr,false,PDSClass);
+  EditFieldTL(h,v+=vs,50,"Orig. Customer",M4Code,Normal,20,f12,false,CUSClass);
+  EditFieldTL(h,v3=(v+=vs),50,"Min Amount",M4Val,Normal,0,vals0,false,0);
+  h = 320;
+  v = vm + 10;
+
+  ButtonFrame(h,v,123,5,"Status");
+  CheckBox(h,v,0,"Not OKed",flags[1]);
+  CheckBox(h,v+=16,0,"O_Ked",flags[2]);
+  RadioButton(h,v+=16,0,0,"Include Disputed",flags[7]);
+  RadioButton(h,v+=16,1,0,"Exclude Disputed",flags[7]);
+  RadioButton(h,v+=16,2,0,"Disputed Only",flags[7]);
+  EndFrame;
+
+  v3 = v3 + 41;
+  v = v3;
+    vm = v;
+    h = 148;
+  ButtonFrame(h,v,123,3,"Function");
+  RadioButton(h,v,0,0,"Overview",ArtMode);
+  RadioButton(h,v+=16,1,0,"Detailed",ArtMode);
+  RadioButton(h,v+=16,4,0,"Overview with Cur.",ArtMode);
+  RadioButton(h,v+=16,5,0,"Overview with Items",ArtMode);
+  EndFrame;
+
+    h2 = 320;
+    l = 160;
+  ButtonFrame(h2,v=vm,l,5,"Sorting");
+  RadioButton(h2,v,0,0,"Transaction Date",flags[10]);
+  RadioButton(h2,v+=16,1,0,"Invoice No.",flags[10]);
+  RadioButton(h2,v+=16,2,0,"Location (from Header)",flags[10]);
+  RadioButton(h2,v+=16,3,0,"Overview with Official No.",flags[10]);
+  RadioButton(h2,v+=16,4,0,"Invoice Date",flags[10]);
+  EndFrame;
+  Tile(2,330,false,"2",Stext);
+  v = 6;
+  EditFieldTL(h=150,v,100,"Item Group",M4UStr,Normal,21,Stext,false,ITSClass);
+  EditFieldTL(h,v+=vs,150,"Item Classification", M4UStr,Normal,60,Comment,false,DISClass);
+  EditFieldTL(h,v+=vs,100,"Item",M4UStr,Normal,41,f10,false,INSClass);
+  EditFieldTL(h,v+=vs,100,"Sales Account",M4UStr,Normal,21,f7,false,AccSClass);
+  EditFieldTL(h,v+=vs,100,"Debtors Account",M4UStr,Normal,21,f8,false,AccSClass);
+  EditFieldTL(h,v+=vs,100,"Main Partner",M4UStr,Normal,20,f9,false,CUSClass);
+  EditFieldTL(h,v+=vs,100,"#VAT# Code",M4UStr,Normal,100,f13,false,VATCodeSClass);
+  //    EditFieldTL(h,v+=vs,50,"Order Class",M4UStr,Normal,5,Stext,false,OrderClassSClass); // no more strings to use....
+  ButtonFrame(h=50,vm = (v+=40),123,4,"Invoice Type");
+  CheckBox(h,v,0,"Invoices",flags[3]);
+  CheckBox(h,v+=16,0,"Cash Notes",flags[4]);
+  CheckBox(h,v+=16,0,"#Credit Notes#",flags[5]);
+  CheckBox(h,v+=16,0,"I_nterest Inv.",flags[6]);
+  CheckBox(h,v+=26,0,"Invoices affecting #S/L# only",flags[19]);
+  StaticText(h+17,v+=30,"(ignore Invoice Types)",false);
+  CheckBox(h=220,v=vm,0,"Show Comment",flags[11]);
+  CheckBox(h,v+=16,0,"Show Base Currency 1 & 2 Totals",flags[12]);
+  CheckBox(h,v+=16,0,"Fiscal Invoices only",flags[13]);
+  CheckBox(h,v+=16,0,"Show Invalidated Invoices",flags[14]);
+  CheckBox(h,v+=16,0,"Show #VAT# Amount",flags[15]);
+  CheckBox(h,v+=16,0,"Not Printed Invoices only",flags[17]);
+  CheckBox(h,v+=16,0,"Include Orig. Customer",flags[18]);
+  CheckBox(h,v+=16,0,"Invoices with Total amount equal zero",flags[20]);
+  CheckBox(h,v+=16,0,"Exported to Factoring only",flags[22]);
+  CheckBox(h,v+=16,0,"Show Agreement No.",flags[24]);
+  CheckBox(h,v+=16,0,"Show Due Date",flags[25]);
+  CheckBox(h+=hs,v=vm,0,"Show Official No.",flags[16]);
+  EndWindow;
+end;
