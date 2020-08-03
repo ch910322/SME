@@ -47,6 +47,7 @@ external inner procedure GetFullCurncyRate (var string,Date,var val,var val,var 
 external inner procedure OutEmpty(record RcVc,Integer);
 //CUST
 external inner procedure InvVat(Integer,Integer,Integer,Integer,string,val,var val,var val,var val,var val,var val);
+external function string 255 GetCredManNr(Longint);
 
 procedure GetRowValues(record IVVc IVr,row IVVc IVrw,var val row_ivnvat,var val row_iv,var val row_ivvat)
 begin
@@ -807,15 +808,24 @@ begin
       end;
       StartFormat(15);
       OutString(0,0,USetStr(2352),false);//0
-      //CUST
-      OutString(30,0,USetStr(9000010),false);
-      //CUST
+      //CUST-BEGIN
+      if (RepSpec.flags[24]==1) then begin
+        OutString(30,0,USetStr(9000010),false);
+      end;
+      //CUST-END
       if (RepSpec.flags[16]!=0 and RepSpec.flags[10]!=3) then begin
         OutString(60,0,USetStr(3509),false);
-        //CUST
-        OutString(90,0,USetStr(9000011),false);
-        //CUST
+        //CUST-BEGIN
+        if (RepSpec.ArtMode==5) then begin
+          OutString(90,0,USetStr(9000011),false);
+        end;
+        //CUST-END
         OutString(120,0,USetStr(2353),false);
+        //CUST-BEGIN
+        if (RepSpec.flags[25]==1) then begin
+          OutString(145,0,USetStr(200254),false);
+        end;
+        //CUST-END
         if (overviewpervatcodef) then begin
           OutString(170,0,USetStr(2358),false);
         end else begin
@@ -852,7 +862,7 @@ begin
     end;
   end;
 
-  if (RepSpec.ArtMode==4) then begin//CUST
+  if (RepSpec.ArtMode==4) then begin
     if (RepSpec.PocketPC == 0) then begin
       StartFormat(15);
       OutString(0,0,USetStr(2352),false);
@@ -1633,8 +1643,18 @@ LkInvoiceTypeCredit1:;
               StartFormat(15);
               if (RepSpec.flags[16]!=0 and RepSpec.flags[10]!=3) then begin
                 OutStringOvst(0,"DblCustPS2",IVr.SerNr,false,IVr.Invalid);
+                //CUST-BEGIN
+                if (RepSpec.flags[24]==1) then begin
+                  OutString(30,"DblCredManVc",GetCredManNr(IVr.CustCredManNr),false);  
+                end;
+                //CUST-END
                 OutStringOvst(60,0,IVr.OfficialSerNr,false,IVr.Invalid);
                 OutDate(120,0,IVr.InvDate,false);
+                //CUST-BEGIN
+                if (RepSpec.flags[25]==1) then begin
+                  OutDate(145,0,IVr.PayDate,false);
+                end;
+                //CUST-END
                 OutStringCut(170,270,0,IVr.Addr0,false,0);
                 OutString(305,0,tstr,false);
               end else begin
@@ -1784,6 +1804,7 @@ LkInvoiceTypeCredit1:;
           end else begin
           end;
         end;
+        //CUST-BEGIN
         if (RepSpec.ArtMode==5)  then begin
           tstr = "";
           switch (IVr.InvType) begin
@@ -1803,7 +1824,7 @@ LkInvoiceTypeCredit1:;
               if (RepSpec.flags[16]!=0 and RepSpec.flags[10]!=3) then begin
                 OutStringOvst(0,"DblCustPS2",IVr.SerNr,false,IVr.Invalid);
                 if (RepSpec.flags[24]==1) then begin
-                  OutString(30,"DblCredManVc",IVr.CustCredManNr,false);  
+                  OutString(30,"DblCredManVc",GetCredManNr(IVr.CustCredManNr),false);  
                 end;
                 OutStringOvst(60,0,IVr.OfficialSerNr,false,IVr.Invalid);
                 OutString(90,"DblINVc",IVrw.ArtCode,false);  
@@ -1856,7 +1877,8 @@ LkInvoiceTypeCredit1:;
           end else begin
             AddCurncyTotals(invacur,invav3,invcurcnt,IVr.CurncyCode,ivvat);
           end;
-        end;        
+        end;
+        //CUST-END        
         totinv = totinv + 1;
       end;
     end;
