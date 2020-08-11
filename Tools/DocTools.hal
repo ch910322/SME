@@ -42,7 +42,7 @@ begin
   record CYBlock CompYear;
   record CredManSetBlock CMb;
   val t,v,t1,t2,t3,t4;
-  val abovehiddenbase,abovehiddenvat;
+  val abovehiddenbase,abovehiddenvat,openamount;
 
   BlockLoad(CompYear);
 
@@ -63,7 +63,9 @@ begin
   RepSpec.f7 = CompYear.Addr0;//F_EGENADRESS
   RepSpec.vals4 = abovehiddenbase + abovehiddenvat;
   RepSpec.f10 = IVr.Sum4;
-  RepSpec.f11 = GetCustomerOpenAmount(IVr.CustCode);
+  openamount = GetCustomerOpenAmount(IVr.CustCode);
+  RepSpec.f11 = openamount;
+  RepSpec.f12 = RepSpec.vals4 + RepSpec.vals2 + openamount;
 
 
   BlockLoad(CMb);
