@@ -14,7 +14,7 @@ window SME_IVJRClass:3
 begin
   real h,h2,hs,v,v3,vm,vs,l;
 
-  WindowBegin("Specify Invoice Journal",IVJRClass,CGRcW,RcType);
+  WindowBegin("Specify Invoice Journal",SME_IVJRClass,CGRcW,RcType);
   SetWRect(20,80,520,390);
   vs = 20;
   hs = 148;
