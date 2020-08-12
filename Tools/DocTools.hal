@@ -65,13 +65,13 @@ begin
   RepSpec.f10 = IVr.Sum4;
   openamount = GetCustomerOpenAmount(IVr.CustCode);
   RepSpec.f11 = openamount;
-  RepSpec.f12 = RepSpec.vals4 + RepSpec.vals2 + openamount;
-
 
   BlockLoad(CMb);
   RepSpec.vals1 = GetCredManItemValue(IVr,CMb.RateItem,true);
   RepSpec.vals2 = GetCredManItemValue(IVr,CMb.InstalmentItem,true);
   RepSpec.vals3 = GetCredManItemValue(IVr,CMb.LateFeeItem,true);
+
+  RepSpec.f12 = RepSpec.vals4 + RepSpec.vals2 + openamount;
 
   return;
 end;
