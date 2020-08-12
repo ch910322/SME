@@ -1,0 +1,9 @@
+
+
+global
+function Boolean CanEditCredManCreateDate()
+begin
+  
+
+  CanEditCredManCreateDate = true;
+end;
