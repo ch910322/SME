@@ -3,6 +3,7 @@ external inner procedure SumNoDownPay(record IVVc,var val,var val,var val,var va
 external function string 255 GetCredManNr(Longint);
 external procedure GetHiddenInvoiceValues(record IVVc,var val,var val);
 external function val GetCustomerOpenAmount(string);
+external inner procedure ValToText(val,Integer,string,string,var string);
 
 global
 function Boolean Ext_SkipInvoiceRow(record IVVc IVr,row IVVc IVrw,Integer i)
@@ -42,7 +43,8 @@ begin
   record CYBlock CompYear;
   record CredManSetBlock CMb;
   val t,v,t1,t2,t3,t4;
-  val abovehiddenbase,abovehiddenvat,openamount;
+  val abovehiddenbase,abovehiddenvat,openamount,topay2;
+  string 255 tstr;
 
   BlockLoad(CompYear);
 
@@ -71,7 +73,11 @@ begin
   RepSpec.vals2 = GetCredManItemValue(IVr,CMb.InstalmentItem,true);
   RepSpec.vals3 = GetCredManItemValue(IVr,CMb.LateFeeItem,true);
 
-  RepSpec.f12 = RepSpec.vals4 + RepSpec.vals2 + openamount;
+  topay2 = RepSpec.vals4 + RepSpec.vals2 + openamount;
+  RepSpec.f12 = topay2;
+  ValToText(topay2,M4Val,IVr.CurncyCode,IVr.LangCode,tstr);
+  RepSpec.f13 = tstr;
+
 
   return;
 end;
