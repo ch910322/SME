@@ -835,6 +835,11 @@ begin
       end else begin
         OutString(60,0,USetStr(2353),false);//60
         OutString(110,0,USetStr(2354),false);//110
+        //CUST-BEGIN
+        if (RepSpec.flags[25]==1) then begin
+          OutString(145,0,USetStr(200254),false);
+        end;
+        //CUST-END
         if (overviewpervatcodef) then begin
           OutString(170,0,USetStr(2358),false);//280
         end else begin
@@ -1667,7 +1672,17 @@ LkInvoiceTypeCredit1:;
                 end else begin
                   OutStringOvst(0,"DblCustPS2",CreateInvoiceNumber(IVr.SerNr,IVr.OfficialSerNr),false,IVr.Invalid);
                 end;
+                //CUST-BEGIN
+                if (RepSpec.flags[24]==1) then begin
+                  OutString(30,"DblCredManVc",GetCredManNr(IVr.CustCredManNr),false);  
+                end;
+                //CUST-END
                 OutDate(60,0,IVr.InvDate,false);
+                //CUST-BEGIN
+                if (RepSpec.flags[25]==1) then begin
+                  OutDate(145,0,IVr.PayDate,false);
+                end;
+                //CUST-END
                 OutStringCut(110,220,0,IVr.Addr0,false,0);
                 if (IVr.InvType==kInvoiceTypeCredit or IVr.InvType==kInvoiceTypeCreditSpecialSales) then begin
                   if (nonblank(IVr.Reason)) then begin
