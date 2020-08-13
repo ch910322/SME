@@ -72,8 +72,10 @@ begin
   RepSpec.vals1 = GetCredManItemValue(IVr,CMb.RateItem,true);
   RepSpec.vals2 = GetCredManItemValue(IVr,CMb.InstalmentItem,true);
   RepSpec.vals3 = GetCredManItemValue(IVr,CMb.LateFeeItem,true);
-
   topay2 = RepSpec.vals4 + RepSpec.vals2 + openamount;
+  if (topay2<0) then begin
+    topay2 = 0;
+  end;
   RepSpec.f12 = topay2;
   ValToText(topay2,M4Val,IVr.CurncyCode,IVr.LangCode,tstr);
   RepSpec.f13 = tstr;
