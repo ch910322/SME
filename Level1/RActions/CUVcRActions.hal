@@ -1,0 +1,60 @@
+
+function Boolean MaskMatches(string pattern,string tstr)
+begin
+  string 255 c,c2;
+  Integer i;
+  Boolean res;
+  
+  if (len(pattern)==len(tstr)) then begin
+    res = true;
+    for (i=0;i<len(pattern);i=i+1) begin
+      c = mid(pattern,i,1);
+      c2 = mid(tstr,i,1);
+      if (c!="#" and c!=c2) then begin
+        res = false;
+        i = len(pattern);
+      end;
+    end;
+  end;
+
+  MaskMatches = res;
+  return;
+end;
+
+function Boolean GetVATMaskVATCode(string vatnr,var string vatcode)
+begin
+  record VATMaskVATCodeBlock VCb;
+  row VATMaskVATCodeBlock VCbrw;
+  Integer i,rwcnt;
+  Boolean res;
+
+  BlockLoad(VCb);
+  rwcnt = MatRowCnt(VCb);
+  for (i=0;i<rwcnt;i=i+1) begin
+    MatRowGet(VCb,i,VCbrw);
+    if (MaskMatches(VCbrw.VATMask,vatnr)) then begin
+      vatcode = VCbrw.VATCode;
+      i = rwcnt;
+      res = true;
+    end;
+  end;
+
+  GetVATMaskVATCode = res;
+  return;
+end;
+
+global
+updating function LongInt CUVcRecordCheck(var record CUVc CUr,record CUVc CU2r,LongInt stat,LongInt long4)
+BEGIN
+  LongInt res;
+  string 255 vatcode;
+
+  res = 0;     
+  if (GetVATMaskVATCode(CUr.VATNr,vatcode)) then begin
+    CUr.VATCode = vatcode;
+  end;
+  res = inner.CUVcRecordCheck(CUr,CU2r,stat,long4);
+
+  CUVcRecordCheck = res;
+  RETURN;
+END;

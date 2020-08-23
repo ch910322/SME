@@ -108,3 +108,17 @@ begin
   CheckBox(h+=hs,v=vm,0,"Show Official No.",flags[16]);
   EndWindow;
 end;
+
+window VATMaskVATCodeTClass:3
+  wtag("language","ENG"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  real h,h2,hs,v,v3,vm,vs,l;
+  WindowBegin("VAT Mask VAT Codes",VATMaskVATCodeTClass,CGHBl,-);
+  SetWRect(80,80,550,280);
+  SetBlid(VATMaskVATCodeBlock);
+  MatrixBegin(10,20,-30,-10,-,50);
+  MatCol(1,25,"VAT Mask",0,VATMask,false,0);
+  MatCol(1,-70,"VAT Code",0,VATCode,false,VATCodeSClass);
+  EndMatrix;
+  EndWindow;
+end;
