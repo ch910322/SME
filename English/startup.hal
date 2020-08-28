@@ -6,6 +6,7 @@ begin
 
 /* Sales ledger */
 	Report("SME Invoice Journal",SME_IVJRClass,SME_InvoiceRn,0,modSL);
+	Setting("VAT Mask VAT Codes",VATMaskVATCodeTClass,modSY);
 
   SString(9000010,"Agreement");
   SString(9000011,"Item");
