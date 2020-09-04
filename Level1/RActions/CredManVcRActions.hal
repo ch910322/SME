@@ -1,0 +1,46 @@
+external outer function Boolean AllDocumentsSignedByUsCM(record CredManVc,Longint,record AgreementDocVc);
+
+global
+updating function LongInt CredManVcRecordCheck(var record CredManVc CredManr,record CredManVc CredMan2r,LongInt stat,LongInt long4)
+BEGIN
+  LongInt res;
+  record AgreementDocVc ADr;
+
+  res = 0;
+
+  if (CredManr.Status!=CredMan2r.Status) then begin
+    if (CredManr.Status==2) then begin//signed
+      if (AllDocumentsSignedByUsCM(CredManr,CredManr.SerNr,ADr)==false) then begin
+        RecordCheckError(9000012,"",-1,"SerNr");
+        res = -1;
+        goto LCredManVcRecordCheck;
+      end;
+    end;
+  end;
+
+  res = inner.CredManVcRecordCheck(CredManr,CredMan2r,stat,long4);
+  
+  if (res==0) then begin
+    switch (CredManr.Status) begin
+      case 1:
+        CredManr.Approved = 1;
+        CredManr.OKFlag = 0;
+      case 2:
+        CredManr.Approved = 1;
+        CredManr.OKFlag = 0;
+      case 4:
+        CredManr.Approved = 1;
+        CredManr.OKFlag = 1;
+      case 5:
+        CredManr.Approved = 0;
+        CredManr.OKFlag = 0;
+      case 6:
+        CredManr.Approved = 1;
+        CredManr.OKFlag = 0;
+    end;
+  end;
+
+LCredManVcRecordCheck:;
+  CredManVcRecordCheck = res;
+  return;
+END;
