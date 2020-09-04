@@ -3,15 +3,18 @@
 global
 function Boolean CanEditCredManCreateDate()
 begin
-  
-
   CanEditCredManCreateDate = true;
+end;
+
+global
+function Boolean HasPaymentWithoutRecons()
+begin
+  HasPaymentWithoutRecons = true;
 end;
 
 global
 function Boolean UseCredManStatus()
 begin
-  
   UseCredManStatus = true;
   return;
 end;
