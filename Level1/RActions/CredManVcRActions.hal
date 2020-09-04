@@ -22,6 +22,9 @@ BEGIN
   
   if (res==0) then begin
     switch (CredManr.Status) begin
+      case 0:
+        CredManr.Approved = 0;
+        CredManr.OKFlag = 0;
       case 1:
         CredManr.Approved = 1;
         CredManr.OKFlag = 0;

@@ -1,5 +1,6 @@
 begin
   
+  SourceFile("halcust\\LoanApp\\Stubs",3);
   Exec_file("halcust\\LoanApp\\datadef.hal");
   SourceFile("halcust\\LoanApp",0);
   SourceFile("halcust\\Level1\\RActions",1);
@@ -9,7 +10,6 @@ begin
   SourceFile("halcust\\English",3);
   SourceFile("halcust\\Reports",3);
   SourceFile("halcust\\WActions",3);
-  SourceFile("halcust\\LoanApp\\Stubs",3);
 
   BlockBegin(VATMaskVATCodeBlock,-,"");
   RecordField(Math,M4Matrix,0,0);
