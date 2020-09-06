@@ -1,4 +1,4 @@
-external outer function Boolean AllDocumentsSignedByUsCM(record CredManVc,Longint,record AgreementDocVc);
+external outer function Boolean AllDocumentsSignedByUsCM2(record CredManVc);
 
 global
 updating function LongInt CredManVcRecordCheck(var record CredManVc CredManr,record CredManVc CredMan2r,LongInt stat,LongInt long4)
@@ -7,10 +7,11 @@ BEGIN
   record AgreementDocVc ADr;
 
   res = 0;
+  
 
   if (CredManr.Status!=CredMan2r.Status) then begin
     if (CredManr.Status==2) then begin//signed
-      if (AllDocumentsSignedByUsCM(CredManr,CredManr.SerNr,ADr)==false) then begin
+      if (AllDocumentsSignedByUsCM2(CredManr)==false) then begin
         RecordCheckError(9000012,"",-1,"SerNr");
         res = -1;
         goto LCredManVcRecordCheck;
