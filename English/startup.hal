@@ -10,6 +10,12 @@ begin
 
   SString(9000010,"Agreement");
   SString(9000011,"Item");
+  SString(9000012,"Documents no signed");
+
+  StrSetAdd(3);
+  StrSetText(AllowActivateCredMan,"Allow activating Credit Agreements");
+  StrSetText(AllowDisburseCredMan,"Allow disbursing Credit Agreements");
+  EndStrSet;
 
   return;
 end;
