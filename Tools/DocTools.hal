@@ -45,6 +45,10 @@ begin
   val t,v,t1,t2,t3,t4;
   val abovehiddenbase,abovehiddenvat,openamount,topay2;
   string 255 tstr;
+  string 255 credivno;
+  record IVVc IVCreditr;
+  Integer i,rwcnt;
+  row IVVc IVrw;
 
   BlockLoad(CompYear);
 
@@ -83,6 +87,21 @@ begin
   ValToText(topay2,M4Val,IVr.CurncyCode,IVr.LangCode,tstr);
   RepSpec.f13 = tstr;
 
+  rwcnt = MatRowCnt(IVr);
+  for (i=0;i<rwcnt;i=i+1) begin
+    MatRowGet(IVr,i,IVrw);
+    if (IVrw.stp==kInvoiceRowTypeCredit) then begin
+      credivno = IVrw.OrdRow;
+      IVCreditr.SerNr = IVrw.OrdRow;
+      if (ReadFirstMain(IVCreditr,1,true)) then begin  
+        if (nonblank(IVCreditr.OfficialSerNr)) then begin
+          credivno = IVCreditr.OfficialSerNr;
+        end;
+      end;
+      i = rwcnt;
+    end;
+  end;
+  RepSpec.f14 = credivno;
 
   return;
 end;
