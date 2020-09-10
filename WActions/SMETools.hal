@@ -13,6 +13,12 @@ begin
 end;
 
 global
+function Boolean SimplifiedSureties()
+begin
+  SimplifiedSureties = true;
+end;
+
+global
 function Boolean UseCredManStatus()
 begin
   UseCredManStatus = true;
