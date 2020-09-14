@@ -51,6 +51,8 @@ begin
   record IVVc IVCreditr;
   Integer i,rwcnt;
   row IVVc IVrw;
+  record UserVc Userr;
+  record CredManVc CredManr;
 
   BlockLoad(CompYear);
 
@@ -108,7 +110,14 @@ begin
     end;
   end;
   RepSpec.f14 = credivno;
-
+  CredManr.SerNr = IVr.CustCredManNr;
+  if (ReadFirstMain(CredManr,1,true)) then begin
+    Userr.Code = CredManr.SalesMan;
+    if (ReadFirstMain(Userr,1,true)) then begin
+      RepSpec.f15 = Userr.Job;
+    end;
+  end;
+  
   return;
 end;
 
