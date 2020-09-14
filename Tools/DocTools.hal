@@ -4,6 +4,7 @@ external function string 255 GetCredManNr(Longint);
 external procedure GetHiddenInvoiceValues(record IVVc,var val,var val);
 external function val GetCustomerOpenAmount(string);
 external inner procedure ValToText(val,Integer,string,string,var string);
+external inner procedure MailTextRow(string,string,string,var row MailTextVc,var Integer);
 
 global
 function Boolean Ext_SkipInvoiceRow(record IVVc IVr,row IVVc IVrw,Integer i)
@@ -165,5 +166,15 @@ begin
   RecordUpdate(oldMailr,IVMailr,false);
 
   Ext_CreateInvoiceText = true;
+  return;
+end;
+
+
+global
+procedure Ext_MailTextRow(string filename,string registername,string language,var row MailTextVc resMTrw,var Integer IgnoreRecordDetails)
+begin
+  Integer rownr;
+  
+  MailTextRow("IVCredVc","",language,resMTrw,IgnoreRecordDetails);
   return;
 end;
