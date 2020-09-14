@@ -67,7 +67,11 @@ begin
   RepSpec.f5 = CompYear.OrgNr;//F_EGETORGNR
   RepSpec.f6 = CompYear.VATNr;//F_EGETMOMSNR
   RepSpec.f7 = CompYear.Addr0;//F_EGENADRESS
-  RepSpec.vals4 = abovehiddenbase + abovehiddenvat;
+  if (IVr.InvType==kInvoiceRowTypeCredit) then begin
+    RepSpec.vals4 = -(abovehiddenbase + abovehiddenvat);
+  end else begin
+    RepSpec.vals4 = abovehiddenbase + abovehiddenvat;
+  end;
   RepSpec.f10 = IVr.Sum4;
   openamount = GetCustomerOpenAmount(IVr.CustCode);
   RepSpec.f11 = openamount;
