@@ -171,10 +171,15 @@ end;
 
 
 global
-procedure Ext_MailTextRow(string filename,string registername,string language,var row MailTextVc resMTrw,var Integer IgnoreRecordDetails)
+function Boolean Ext_MailTextRow(record IVVc IVr,string filename,string registername,string language,var row MailTextVc resMTrw,var Integer IgnoreRecordDetails)
 begin
-  Integer rownr;
-  
-  MailTextRow("IVCredVc","",language,resMTrw,IgnoreRecordDetails);
+  Boolean res;
+
+  if (IVr.InvType==kInvoiceTypeCredit) then begin
+    MailTextRow("IVCreditVc","",language,resMTrw,IgnoreRecordDetails);
+    res = true;
+  end;
+
+  Ext_MailTextRow = res;
   return;
 end;
