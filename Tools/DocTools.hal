@@ -5,6 +5,7 @@ external procedure GetHiddenInvoiceValues(record IVVc,var val,var val);
 external function val GetCustomerOpenAmount(string);
 external inner procedure ValToText(val,Integer,string,string,var string);
 external inner procedure MailTextRow(string,string,string,var row MailTextVc,var Integer);
+external inner function string 255 StrReplace(string,string,string);
 
 global
 function Boolean Ext_SkipInvoiceRow(record IVVc IVr,row IVVc IVrw,Integer i)
@@ -31,7 +32,7 @@ begin
 
   res = true;
   if (nonblank(IVr.OfficialSerNr)) then begin
-    fname = USetStr(1808) & IVr.OfficialSerNr & ".pdf";
+    fname = USetStr(1808) & StrReplace(IVr.OfficialSerNr,"/","") & ".pdf";
   end else begin
     fname = USetStr(1808) & IVr.SerNr & ".pdf";
   end;
