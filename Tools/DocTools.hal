@@ -16,7 +16,7 @@ begin
   BlockLoad(CIb);
 
   if (CIb.DetailedInvoice==1) then begin
-    if (i<3) then begin
+    if (i<3 or (IVr.InvType==kInvoiceTypeCredit and i<4)) then begin
       res = true;
     end;
   end;
