@@ -1,4 +1,5 @@
 external outer function Boolean AllDocumentsSignedByUsCM2(record CredManVc);
+external outer function Boolean ContractHasHistory(record CredManVc);
 
 global
 updating function LongInt CredManVcRecordCheck(var record CredManVc CredManr,record CredManVc CredMan2r,LongInt stat,LongInt long4)
@@ -13,6 +14,13 @@ BEGIN
     if (CredManr.Status==2) then begin//signed
       if (AllDocumentsSignedByUsCM2(CredManr)==false) then begin
         RecordCheckError(9000012,"",-1,"SerNr");
+        res = -1;
+        goto LCredManVcRecordCheck;
+      end;
+    end;
+    if (CredManr.Status==5) then begin//cancelled
+      if (ContractHasHistory(CredManr)) then begin
+        RecordCheckError(9000013,"",-1,"SerNr");
         res = -1;
         goto LCredManVcRecordCheck;
       end;

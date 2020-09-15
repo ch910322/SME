@@ -4,6 +4,8 @@ external function string 255 GetCredManNr(Longint);
 external procedure GetHiddenInvoiceValues(record IVVc,var val,var val);
 external function val GetCustomerOpenAmount(string);
 external inner procedure ValToText(val,Integer,string,string,var string);
+external inner procedure MailTextRow(string,string,string,var row MailTextVc,var Integer);
+external inner function string 255 StrReplace(string,string,string);
 
 global
 function Boolean Ext_SkipInvoiceRow(record IVVc IVr,row IVVc IVrw,Integer i)
@@ -14,7 +16,7 @@ begin
   BlockLoad(CIb);
 
   if (CIb.DetailedInvoice==1) then begin
-    if (i<3) then begin
+    if (i<3 or (IVr.InvType==kInvoiceTypeCredit and i<4)) then begin
       res = true;
     end;
   end;
@@ -30,7 +32,7 @@ begin
 
   res = true;
   if (nonblank(IVr.OfficialSerNr)) then begin
-    fname = USetStr(1808) & IVr.OfficialSerNr & ".pdf";
+    fname = USetStr(1808) & StrReplace(IVr.OfficialSerNr,"/","") & ".pdf";
   end else begin
     fname = USetStr(1808) & IVr.SerNr & ".pdf";
   end;
@@ -45,6 +47,12 @@ begin
   val t,v,t1,t2,t3,t4;
   val abovehiddenbase,abovehiddenvat,openamount,topay2;
   string 255 tstr;
+  string 255 credivno;
+  record IVVc IVCreditr;
+  Integer i,rwcnt;
+  row IVVc IVrw;
+  record UserVc Userr;
+  record CredManVc CredManr;
 
   BlockLoad(CompYear);
 
@@ -63,7 +71,11 @@ begin
   RepSpec.f5 = CompYear.OrgNr;//F_EGETORGNR
   RepSpec.f6 = CompYear.VATNr;//F_EGETMOMSNR
   RepSpec.f7 = CompYear.Addr0;//F_EGENADRESS
-  RepSpec.vals4 = abovehiddenbase + abovehiddenvat;
+  if (IVr.InvType==kInvoiceRowTypeCredit) then begin
+    RepSpec.vals4 = -(abovehiddenbase + abovehiddenvat);
+  end else begin
+    RepSpec.vals4 = abovehiddenbase + abovehiddenvat;
+  end;
   RepSpec.f10 = IVr.Sum4;
   openamount = GetCustomerOpenAmount(IVr.CustCode);
   RepSpec.f11 = openamount;
@@ -83,7 +95,29 @@ begin
   ValToText(topay2,M4Val,IVr.CurncyCode,IVr.LangCode,tstr);
   RepSpec.f13 = tstr;
 
-
+  rwcnt = MatRowCnt(IVr);
+  for (i=0;i<rwcnt;i=i+1) begin
+    MatRowGet(IVr,i,IVrw);
+    if (IVrw.stp==kInvoiceRowTypeCredit) then begin
+      credivno = IVrw.OrdRow;
+      IVCreditr.SerNr = IVrw.OrdRow;
+      if (ReadFirstMain(IVCreditr,1,true)) then begin  
+        if (nonblank(IVCreditr.OfficialSerNr)) then begin
+          credivno = IVCreditr.OfficialSerNr;
+        end;
+      end;
+      i = rwcnt;
+    end;
+  end;
+  RepSpec.f14 = credivno;
+  CredManr.SerNr = IVr.CustCredManNr;
+  if (ReadFirstMain(CredManr,1,true)) then begin
+    Userr.Code = CredManr.SalesMan;
+    if (ReadFirstMain(Userr,1,true)) then begin
+      RepSpec.f15 = Userr.Job;
+    end;
+  end;
+  
   return;
 end;
 
@@ -142,5 +176,20 @@ begin
   RecordUpdate(oldMailr,IVMailr,false);
 
   Ext_CreateInvoiceText = true;
+  return;
+end;
+
+
+global
+function Boolean Ext_MailTextRow(record IVVc IVr,string filename,string registername,string language,var row MailTextVc resMTrw,var Integer IgnoreRecordDetails)
+begin
+  Boolean res;
+
+  if (IVr.InvType==kInvoiceTypeCredit) then begin
+    MailTextRow("IVCreditVc","",language,resMTrw,IgnoreRecordDetails);
+    res = true;
+  end;
+
+  Ext_MailTextRow = res;
   return;
 end;
