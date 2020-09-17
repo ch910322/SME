@@ -2,7 +2,7 @@ external function val GetCredManItemValue(record IVVc,string,Boolean);
 external inner procedure SumNoDownPay(record IVVc,var val,var val,var val,var val,var val,var val);
 external function string 255 GetCredManNr(Longint);
 external procedure GetHiddenInvoiceValues(record IVVc,var val,var val);
-external function val GetCustomerOpenAmount(string);
+external function val GetCustomerOpenAmount(string,record IVVc);
 external inner procedure ValToText(val,Integer,string,string,var string);
 external inner procedure MailTextRow(string,string,string,var row MailTextVc,var Integer);
 external inner function string 255 StrReplace(string,string,string);
@@ -77,7 +77,7 @@ begin
     RepSpec.vals4 = abovehiddenbase + abovehiddenvat;
   end;
   RepSpec.f10 = IVr.Sum4;
-  openamount = GetCustomerOpenAmount(IVr.CustCode);
+  openamount = GetCustomerOpenAmount(IVr.CustCode,IVr);
   RepSpec.f11 = openamount;
 
   BlockLoad(CMb);
