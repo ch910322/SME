@@ -25,6 +25,14 @@ begin
 end;
 
 global
+function Boolean HasMoneyTransferDate()
+begin
+  
+  HasMoneyTransferDate = true;
+  return;
+end;
+
+global
 function Boolean CheckForActiveAgreement(record CredManVc CredManr)
 begin
   Boolean res;
