@@ -33,6 +33,14 @@ begin
 end;
 
 global
+function Boolean HasBillOfExchangeShort()
+begin
+  HasBillOfExchangeShort = true;
+  return;
+end;
+
+
+global
 function Boolean CheckForActiveAgreement(record CredManVc CredManr)
 begin
   Boolean res;
