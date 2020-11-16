@@ -39,6 +39,12 @@ begin
   return;
 end;
 
+global
+function Boolean HasBalloonLoanType()
+begin
+  HasBalloonLoanType = true;
+  return;
+end;
 
 global
 function Boolean CheckForActiveAgreement(record CredManVc CredManr)
