@@ -40,6 +40,13 @@ begin
 end;
 
 global
+function Boolean HasSuretyPerson()
+begin
+  HasSuretyPerson = true;
+  return;
+end;
+
+global
 function Boolean HasBalloonLoanType()
 begin
   HasBalloonLoanType = true;
