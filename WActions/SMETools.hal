@@ -81,7 +81,7 @@ begin
     res = true;
   end else begin
     if (CredManr.Approved==1) then begin
-      ed = AddDay(CredManr.startDate,1);
+      ed = AddDay(CredManr.FirstInvDate,-1);
       res = true;
     end;
   end;
