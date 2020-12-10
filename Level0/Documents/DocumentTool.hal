@@ -592,7 +592,7 @@ BEGIN
   RETURN;
 END;
 
-procedure GlobalLit2999(record LangNrVc LangNrr,Integer n,Integer kind,var string res,Integer curgender)
+procedure GlobalLit2999(record LangNrVc LangNrr,Integer n,Integer kind,var string res,Integer curgender,string StrOut)//CUST
 BEGIN
   row LangNrVc LNrw; 
   Integer a,b,c,temp;
@@ -644,7 +644,7 @@ BEGIN
     end;
   end else begin
 //CUST-BEGIN >> to have "Zero"
-    if ((kind==0) and (n==0)) then begin
+    if ((kind==0) and (n==0) and blank(StrOut)) then begin
       if (nonblank(LangNrr.Zero)) then begin
         res = res & LangNrr.Zero;
       end;
@@ -1161,7 +1161,7 @@ Lbv:
   switch (specialcur) begin
     case 4: GlobalVIE999(LangNrr,bilval,3,tempstr,curgender,StrOut);
     case 3: GlobalPOR999(LangNrr,bilval,3,tempstr,curgender);
-    case 2: GlobalLit2999(LangNrr,bilval,3,tempstr,curgender);
+    case 2: GlobalLit2999(LangNrr,bilval,3,tempstr,curgender,StrOut);//CUST
     case 1: GlobalRus999(LangNrr,bilval,3,tempstr,curgender);
     otherwise  Global999(LangNrr,bilval,3,tempstr,curgender,StrOut);
   end;
@@ -1175,7 +1175,7 @@ Lmv:
   switch (specialcur) begin
     case 4: GlobalVIE999(LangNrr,milval,2,tempstr,curgender,StrOut);
     case 3: GlobalPOR999(LangNrr,milval,2,tempstr,curgender);
-    case 2: GlobalLit2999(LangNrr,milval,2,tempstr,curgender);
+    case 2: GlobalLit2999(LangNrr,milval,2,tempstr,curgender,StrOut);//CUST
     case 1: GlobalRus999(LangNrr,milval,2,tempstr,curgender);
     otherwise Global999(LangNrr,milval,2,tempstr,curgender,StrOut);
   end;
@@ -1188,7 +1188,7 @@ Ltv:
   switch (specialcur) begin
     case 4: GlobalVIE999(LangNrr,thuval,1,tempstr,curgender,StrOut);
     case 3: GlobalPOR999(LangNrr,thuval,1,tempstr,curgender);
-    case 2: GlobalLit2999(LangNrr,thuval,1,tempstr,curgender);
+    case 2: GlobalLit2999(LangNrr,thuval,1,tempstr,curgender,StrOut);//CUST
     case 1: GlobalRus999(LangNrr,thuval,1,tempstr,curgender);
     otherwise  Global999(LangNrr,thuval,1,tempstr,curgender,StrOut);
   end;
@@ -1200,7 +1200,7 @@ Lov:
   switch (specialcur) begin
     case 4: GlobalVIE999(LangNrr,oneval,0,tempstr,curgender,StrOut);
     case 3: GlobalPOR999(LangNrr,oneval,0,tempstr,curgender);
-    case 2: GlobalLit2999(LangNrr,oneval,0,tempstr,curgender);
+    case 2: GlobalLit2999(LangNrr,oneval,0,tempstr,curgender,StrOut);//CUST
     case 1: GlobalRus999(LangNrr,oneval,0,tempstr,curgender);
     otherwise  Global999(LangNrr,oneval,0,tempstr,curgender,StrOut);
   end;
