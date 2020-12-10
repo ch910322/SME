@@ -53,6 +53,35 @@ begin
   return;
 end;
 
+
+global
+function Boolean HasOtherConditionTexts()
+begin
+  HasOtherConditionTexts = false;
+  return;
+end;
+
+global
+function Boolean HasPaymentConditionTexts()
+begin
+  HasPaymentConditionTexts = true;
+  return;
+end;
+
+global
+function Boolean HasSuretyConditionTexts()
+begin
+  HasSuretyConditionTexts = true;
+  return;
+end;
+
+global
+function Boolean HasBOEConditionTexts()
+begin
+  HasBOEConditionTexts = true;
+  return;
+end;
+
 global
 function Boolean CheckForActiveAgreement(record CredManVc CredManr)
 begin
