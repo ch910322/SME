@@ -18,6 +18,7 @@ BEGIN
         goto LCredManVcRecordCheck;
       end;
     end;
+    /*
     if (CredManr.Status==5) then begin//cancelled
       if (ContractHasHistory(CredManr)) then begin
         RecordCheckError(9000013,"",-1,"SerNr");
@@ -25,6 +26,7 @@ BEGIN
         goto LCredManVcRecordCheck;
       end;
     end;
+    */
   end;
 
   if (res==0) then begin
