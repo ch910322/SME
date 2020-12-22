@@ -69,6 +69,13 @@ begin
 end;
 
 global
+function Boolean UseDisburseUntil()
+begin
+  UseDisburseUntil = true;
+  return;
+end;
+
+global
 function Boolean HasSuretyConditionTexts()
 begin
   HasSuretyConditionTexts = true;
@@ -97,12 +104,16 @@ begin
 end;
 
 global
-function Boolean CanCredManMakePayment(record CredManVc CredManr)
+function Boolean CanCredManMakePayment(record CredManVc CredManr,var string errstr)
 begin
   Boolean res;
 
   if (CredManr.Status>=2) then begin
     res = true;
+  end;
+  if (nonblank(CredManr.DisburseUntil) and CredManr.DisburseUntil<CurrentDate) then begin
+    res = false;
+    errstr = USetStr(200113);
   end;
 
   CanCredManMakePayment = res;
