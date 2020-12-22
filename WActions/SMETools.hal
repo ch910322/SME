@@ -53,6 +53,12 @@ begin
   return;
 end;
 
+global
+function Boolean UseCompensationInvoices()
+begin
+  UseCompensationInvoices = true;
+  return;
+end;
 
 global
 function Boolean HasOtherConditionTexts()
