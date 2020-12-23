@@ -61,6 +61,13 @@ begin
 end;
 
 global
+function Boolean ShowToDisburse()
+begin
+  ShowToDisburse = true;
+  return;
+end;
+
+global
 function Boolean HasOtherConditionTexts()
 begin
   HasOtherConditionTexts = false;
