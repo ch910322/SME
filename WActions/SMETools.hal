@@ -124,10 +124,12 @@ begin
   if (CredManr.Status>=2) then begin
     res = true;
   end;
+/* not needed
   if (nonblank(CredManr.DisburseUntil) and CredManr.DisburseUntil<CurrentDate) then begin
     res = false;
     errstr = USetStr(200113);
   end;
+*/
 
   CanCredManMakePayment = res;
   return;
