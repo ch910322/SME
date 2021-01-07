@@ -1,3 +1,4 @@
+external function Integer GetInterestPaymentType(record CredManVc);
 
 global
 function Boolean CanEditCredManCreateDate()
@@ -159,8 +160,10 @@ begin
     res = true;
   end else begin
     if (CredManr.Approved==1) then begin
-      ed = AddDay(CredManr.FirstInvDate,-1);
       res = true;
+      if (GetInterestPaymentType(CredManr)<2) then begin
+        ed = AddDay(CredManr.FirstInvDate,-1);
+      end;
     end;
   end;
 
