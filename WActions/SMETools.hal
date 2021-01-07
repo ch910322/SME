@@ -18,6 +18,12 @@ begin
 end;
 
 global
+function Boolean HasSubordinations()
+begin
+  HasSubordinations = true;
+end;
+
+global
 function Boolean UseCredManStatus()
 begin
   UseCredManStatus = true;
