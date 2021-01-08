@@ -10,8 +10,8 @@ BEGIN
   res = 0;
   
 
-  if (CredManr.Status!=CredMan2r.Status) then begin
-    if (CredManr.Status==2) then begin//signed
+  if (CredManr.Status==2) then begin//signed
+    if (CredManr.Status!=CredMan2r.Status or stat==Rs_Insert) then begin
       if (AllDocumentsSignedByUsCM2(CredManr)==false) then begin
         RecordCheckError(9000012,"",-1,"SerNr");
         res = -1;
