@@ -53,6 +53,7 @@ begin
   row IVVc IVrw;
   record UserVc Userr;
   record CredManVc CredManr;
+  record CMPrintConstantsBlock PCb;
 
   BlockLoad(CompYear);
 
@@ -117,7 +118,11 @@ begin
       RepSpec.f15 = Userr.Job;
     end;
   end;
-  
+  if (IVr.ManualInvoice==1) then begin
+    BlockLoad(PCb);
+    RepSpec.f16 = PCb.InvoiceText;
+  end;
+
   return;
 end;
 
