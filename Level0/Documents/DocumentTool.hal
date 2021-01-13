@@ -7,7 +7,9 @@ external function Boolean GetPD(var record PDVc);
 external procedure HT2Per(Date, Date , var string);
 external procedure GlobalVIE999(record LangNrVc,Integer,Integer,var string,Integer,string);
 external procedure OutAddressBrazil(string,string,string,string,string,string,string);
-
+//CUST-BEGIN
+external outer function Boolean HasLowercaseValueInText();
+//CUST-END
 procedure InvCopyType(record DocVc Docr,var string res)
 BEGIN
   Integer DocCopyNr;
@@ -1367,6 +1369,12 @@ BEGIN
   end;
   GlobalValToText(LangNrr,ccr.CurncyCode,curgender,minorcurgender,curtext,curtext1,curtext2,minorcurtext,minorcurtext1,minorcurtext2,lp,res,curncy,lang,forced,nodecs,LangNrr.CutDecimals);
 LValToText:;
+//CUST-BEGIN
+  if (HasLowercaseValueInText) then begin
+    res = LowerCase(res);
+  end;
+//CUST-END
+
   RETURN;
 END;
 
