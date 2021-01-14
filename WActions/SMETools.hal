@@ -122,6 +122,12 @@ begin
   HasLowercaseValueInText = true;
   return;
 end;
+global
+function Boolean PartiaBuyoutShortensPeriod()
+begin
+  PartiaBuyoutShortensPeriod = false;
+  return;
+end;
 
 global
 function Boolean CheckForActiveAgreement(record CredManVc CredManr)
