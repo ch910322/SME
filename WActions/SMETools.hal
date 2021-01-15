@@ -1,3 +1,4 @@
+external function Integer GetInterestPaymentType(record CredManVc);
 
 global
 function Boolean CanEditCredManCreateDate()
@@ -15,6 +16,12 @@ global
 function Boolean SimplifiedSureties()
 begin
   SimplifiedSureties = true;
+end;
+
+global
+function Boolean HasSubordinations()
+begin
+  HasSubordinations = true;
 end;
 
 global
@@ -39,6 +46,88 @@ begin
   return;
 end;
 
+global
+function Boolean HasSuretyPerson()
+begin
+  HasSuretyPerson = true;
+  return;
+end;
+
+global
+function Boolean HasBalloonLoanType()
+begin
+  HasBalloonLoanType = true;
+  return;
+end;
+
+global
+function Boolean UseCompensationInvoices()
+begin
+  UseCompensationInvoices = true;
+  return;
+end;
+
+global
+function Boolean ShowToDisburse()
+begin
+  ShowToDisburse = true;
+  return;
+end;
+
+global
+function Boolean HasOtherConditionTexts()
+begin
+  HasOtherConditionTexts = false;
+  return;
+end;
+
+global
+function Boolean HasPaymentConditionTexts()
+begin
+  HasPaymentConditionTexts = true;
+  return;
+end;
+
+global
+function Boolean UseDisburseUntil()
+begin
+  UseDisburseUntil = true;
+  return;
+end;
+
+global
+function Boolean HasSuretyConditionTexts()
+begin
+  HasSuretyConditionTexts = true;
+  return;
+end;
+
+global
+function Boolean HasBOEConditionTexts()
+begin
+  HasBOEConditionTexts = true;
+  return;
+end;
+
+global
+function Boolean UseFullBuyoutProcedure()
+begin
+  UseFullBuyoutProcedure = false;
+  return;
+end;
+
+global
+function Boolean HasLowercaseValueInText()
+begin
+  HasLowercaseValueInText = true;
+  return;
+end;
+global
+function Boolean PartiaBuyoutShortensPeriod()
+begin
+  PartiaBuyoutShortensPeriod = false;
+  return;
+end;
 
 global
 function Boolean CheckForActiveAgreement(record CredManVc CredManr)
@@ -55,13 +144,29 @@ begin
 end;
 
 global
-function Boolean CanCredManMakePayment(record CredManVc CredManr)
+function Boolean CanCredManMakePayment(record CredManVc CredManr,var string errstr)
 begin
   Boolean res;
+  record VIVc VIr;
 
   if (CredManr.Status>=2) then begin
     res = true;
   end;
+  if (CredManr.VINr>0) then begin
+    VIr.SerNr = CredManr.VINr;
+    if (ReadFirstmain(VIr,1,true)) then begin
+      if (VIr.PayVal==CredManr.InvSum4) then begin
+        res = false;
+        errstr = UsetStr(200115) & VIr.SerNr;
+      end;
+    end;
+  end;
+/* not needed
+  if (nonblank(CredManr.DisburseUntil) and CredManr.DisburseUntil<CurrentDate) then begin
+    res = false;
+    errstr = USetStr(200113);
+  end;
+*/
 
   CanCredManMakePayment = res;
   return;
@@ -75,8 +180,10 @@ begin
     res = true;
   end else begin
     if (CredManr.Approved==1) then begin
-      ed = AddDay(CredManr.startDate,1);
       res = true;
+      if (GetInterestPaymentType(CredManr)<2) then begin
+        ed = AddDay(CredManr.FirstInvDate,-1);
+      end;
     end;
   end;
 
