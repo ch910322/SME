@@ -239,3 +239,16 @@ begin
   MailTextDClassAfterEditField = res;
   return;
 end;
+
+global
+function Boolean CredManCanInvoiceOverdues(record CredManVc CredManr)
+begin
+  Boolean res;
+
+  if (CredManr.Status>=3) then begin
+    res = true;
+  end;
+
+  CredManCanInvoiceOverdues = res;
+  return;
+end;
