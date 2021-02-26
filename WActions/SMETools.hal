@@ -179,7 +179,7 @@ begin
   if (CredManr.OKFlag==1 and CredManr.Approved==1) then begin
     res = true;
   end else begin
-    if (CredManr.Approved==1) then begin
+    if (CredManr.Status==3 or CredManr.Status==4) then begin
       res = true;
       if (GetInterestPaymentType(CredManr)<2) then begin
         ed = AddDay(CredManr.FirstInvDate,-1);
