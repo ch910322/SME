@@ -181,6 +181,9 @@ begin
   end else begin
     if (CredManr.Status==3 or CredManr.Status==4) then begin
       res = true;
+    end;
+    if (CredManr.Status==2) then begin
+      res = true;
       if (GetInterestPaymentType(CredManr)<2) then begin
         ed = AddDay(CredManr.FirstInvDate,-1);
       end;
