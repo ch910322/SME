@@ -40,6 +40,7 @@ begin
   return;
 end;
 
+global
 procedure FillInvoiceData(record IVVc IVr,var record RcVc RepSpec)
 begin
   record CYBlock CompYear;
