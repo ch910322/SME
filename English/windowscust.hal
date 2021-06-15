@@ -413,7 +413,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
 
   Tile(tilenr,400,false,tilenr,Math2); tilenr = tilenr + 1;
   StaticText(30,v=30,"Comments",false);
-  TextField(100,v-5,-20,270,Math2,0);
+  TextField(100,v-5,-20,-20,Math2,0);
 
   Tile(tilenr,600,false,tilenr,Math2); tilenr = tilenr + 1;
   
