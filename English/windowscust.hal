@@ -133,7 +133,7 @@ begin
   record CredManTypeVc CMTr;
 
 WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
-  SetWRect(64,80,1059,300);
+  SetWRect(64,80,959,300);
   UseView(B2BLoanApplicationVc);
   DynamicWindow;
   Sizeable(-1,-1,0,0);
@@ -150,7 +150,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h,v+=vs,130,"Contact Mobile",Normal,ContactMobile,false,0);
   EditField(h,v+=vs,130,"Contact Telephone",Normal,ContactPhoneNo,false,0);
   v=v+vs;
-  EditField(h,v+=vs,400,"Reason for rejection",Normal,RejReason,false,0);
+  EditField(h,v+=vs,400,"Reason For Rejection",Normal,RejReason,false,0);
 
 
   EditField(h2,v=6,100,"Customer ID",Normal,CustCode,false,CUSClass);
@@ -160,10 +160,10 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h2,v+=vs,130,"Registration Date",Normal,RegDate,false,PasteCurDate);
   EditField(h2,v+=vs,130,"Company Status",Normal,CompStatus,false,LACompStatusSClass);//TODO SCLASS
   EditField(h2,v+=vs,130,"Industry",Normal,Industry,false,BNSClass);
-  EditField(h2,v+=vs,130,"Payment guarantee",Normal,PaymGuarant,false,0);
-  EditField(h2,v+=vs,130,"Promisory note with",Normal,Promisory,false,0);
-  StaticText(h2-5,v+25,"payment guarantee",true);
-  CheckBox(h2,v+=vs,0,"EDS guarantee",EDSGuarant);
+  EditField(h2,v+=vs,130,"Payment Guarantee",Normal,PaymGuarant,false,0);
+  EditField(h2,v+=vs,130,"Promissory Note With",Normal,Promisory,false,0);
+  StaticText(h2-5,v+25,"Payment Guarantee",true);
+  CheckBox(h2,v+=vs,0,"EDS Guarantee",EDSGuarant);
   
   //EditField(h2,v,-40,"Name",Normal,ManagerName,false,0);
   EditField(h3,v=6,80,"Type",Normal,Type,false,CredManTypeSClass);
@@ -172,8 +172,8 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h3,v+=vs,60,"Monthly Rate %",Normal,InterestRate,true,0);
   CheckBox(h3+85,v,0,"Annual",AnnualRate);
   EditField(h3,v+=vs,80,"Monthly Payment Day",Normal,MonthlyPaymentDay,true,0);
-  EditField(h3,v+=vs,80,"Grace period, months",Normal,PrincipleDelayMonths,false,0);
-  EditField(h3,v+=vs,80,"Admin fee",Normal,AdminFee,false,0);
+  EditField(h3,v+=vs,80,"Grace Period, Months",Normal,PrincipleDelayMonths,false,0);
+  EditField(h3,v+=vs,80,"Admin Fee",Normal,AdminFee,false,0);
   
   v = v + 20;
   HalPushButton(h3-90,v,h3+10,v+25,"B2BLoanAppCalculate","Calculate");
@@ -205,13 +205,13 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   end;
   
   tilenr = 1;
-  TileButton(tilenr,"MNGMT / Board mem."); tilenr = tilenr + 1;
+  TileButton(tilenr,"MNGMT/Board Mbr."); tilenr = tilenr + 1;
   TileButton(tilenr,"Surety"); tilenr = tilenr + 1;  
   TileButton(tilenr,"Company Evaluation"); tilenr = tilenr + 1;  
   TileButton(tilenr,"Person Evaluation"); tilenr = tilenr + 1;  
   TileButton(tilenr,"Comments"); tilenr = tilenr + 1;  
   TileButton(tilenr,"Shareholders"); tilenr = tilenr + 1;  
-  TileButton(tilenr,"Planned fees"); tilenr = tilenr + 1;  
+  TileButton(tilenr,"Planned Fees"); tilenr = tilenr + 1;  
   TileButton(tilenr,"BO"); tilenr = tilenr + 1;  
   tilenr = 1;
 
@@ -230,7 +230,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   StaticText(h+=100,v,"",false);
   StaticText(h+=140,v,"",false);
   StaticText(h+=100,v,"",false);
-  StaticText(h+=90,v,"member since",false);
+  StaticText(h+=90,v,"Member Since",false);
   StaticText(h+=100,v,"Company",false);
   StaticText(h+=80,v,"",false);
   StaticText(h+=80,v,"",false);
@@ -246,7 +246,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   CheckBox(h+=80,v,0,"",BMSanctions1);
 //  EditField(h+=140,v,60,"",Normal,BMDebt1,true,0);
   v = v + 30;
-  EditField(h=100,v,60,"Board member 1",Normal,BoardMember2,false,B2BLoanApp_CUSClass);
+  EditField(h=100,v,60,"Board Member 1",Normal,BoardMember2,false,B2BLoanApp_CUSClass);
   EditField(h+=90,v,110,"",Normal,BoardMember2Name,false,0);
   EditField(h+=140,v,90,"",Normal,BMID2,false,0);
   EditField(h+=110,v,70,"",Normal,BMDOB2,false,PasteCurDate);
@@ -256,7 +256,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   CheckBox(h+=80,v,0,"",BMSanctions2);
 //  EditField(h+440,v,60,"",Normal,BMDebt2,true,0);
   v = v + 30;
-  EditField(h=100,v,60,"Board member 2",Normal,BoardMember3,false,B2BLoanApp_CUSClass);
+  EditField(h=100,v,60,"Board Member 2",Normal,BoardMember3,false,B2BLoanApp_CUSClass);
   EditField(h+=90,v,110,"",Normal,BoardMember3Name,false,0);
   EditField(h+=140,v,90,"",Normal,BMID3,false,0);
   EditField(h+=110,v,70,"",Normal,BMDOB3,false,PasteCurDate);
@@ -266,7 +266,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   CheckBox(h+=80,v,0,"",BMSanctions3);
 //  EditField(h+440,v,60,"",Normal,BMDebt3,true,0);
   v = v + 30;
-  EditField(h=100,v,60,"Board member 3",Normal,BoardMember4,false,B2BLoanApp_CUSClass);
+  EditField(h=100,v,60,"Board Member 3",Normal,BoardMember4,false,B2BLoanApp_CUSClass);
   EditField(h+=90,v,110,"",Normal,BoardMember4Name,false,0);
   EditField(h+=140,v,90,"",Normal,BMID4,false,0);
   EditField(h+=110,v,70,"",Normal,BMDOB4,false,PasteCurDate);
@@ -276,7 +276,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   CheckBox(h+=80,v,0,"",BMSanctions4);
 //  EditField(h+440,v,60,"",Normal,BMDebt4,true,0);
   v = v + 30;
-  EditField(h=100,v,60,"Board member 4",Normal,BoardMember5,false,B2BLoanApp_CUSClass);
+  EditField(h=100,v,60,"Board Member 4",Normal,BoardMember5,false,B2BLoanApp_CUSClass);
   EditField(h+=90,v,110,"",Normal,BoardMember5Name,false,0);
   EditField(h+=140,v,90,"",Normal,BMID5,false,0);
   EditField(h+=110,v,70,"",Normal,BMDOB5,false,PasteCurDate);
@@ -286,7 +286,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   CheckBox(h+=80,v,0,"",BMSanctions5);
 //  EditField(h+440,v,60,"",Normal,BMDebt5,true,0);
   v = v + 30;
-  EditField(h=100,v,60,"Board member 5",Normal,Beneficiary,false,B2BLoanApp_CUSClass);
+  EditField(h=100,v,60,"Board Member 5",Normal,Beneficiary,false,B2BLoanApp_CUSClass);
   EditField(h+=90,v,110,"", Normal,BeneficiaryName,false,0);
   EditField(h+=140,v,90,"",Normal,BMID6,false,0);
   EditField(h+=110,v,70,"",Normal,BMDOB6,false,PasteCurDate);
@@ -300,7 +300,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   StaticText(h=60,v=15,"Contact Code",false);
   StaticText(h+120,v,"Name",false);
   StaticText(h+=340,v,"ID",false);
-  StaticText(h+=130,v,"Unpledget Assets TEUR",false);
+  StaticText(h+=130,v,"Unpledged Assets Teur",false);
 
   v = v + 30;
   
@@ -370,17 +370,17 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h3,v,100,"Last Debt Repayment",Normal,LastRepaymentDate,false,PasteCurDate); */
 
   CheckBox(h,v=130,0,"Ongoing Debts",OngoingDebts);
-  CheckBox(h,v+=vs,0,"Last debt repayment",OngoingDebts);
+  CheckBox(h,v+=vs,0,"Last Debt Repayment",OngoingDebts);
   CheckBox(h,v+=vs,0,"Ongoing Asset Arrests",OngoingAssetArrests);
-  CheckBox(h,v+=vs,0,"Ongoing Court Casses As defendant",OngoingCourtCases);
+  CheckBox(h,v+=vs,0,"Ongoing Court Cases Defendant",OngoingCourtCases);
   
   CheckBox(h2,v=130,0,"Historical Asset Arrests",HistoricalAssetArrests);
   CheckBox(h2,v+=vs,0,"Historical Court Cases",HistoricalCourtCases);
-  CheckBox(h2,v+=vs,0,"Active Default to sodra",ActDefSodra);
+  CheckBox(h2,v+=vs,0,"Active Default To Sodra",ActDefSodra);
   CheckBox(h2,v+=vs,0,"Shareholders Credit History",ShCredHist);
   
   h3 = 700;
-  CheckBox(h3,v=130,0,"Spiderweb Negative information",SpiderwebNeg);
+  CheckBox(h3,v=130,0,"Spiderweb Negative Information",SpiderwebNeg);
   CheckBox(h3,v+=vs,0,"Sanctions",CESanctions);
   
   /*h3 = 565;
@@ -406,7 +406,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   
   EditField(h,v+=vs,80,"Average Income",Normal,AvgIncome,true,0);
   EditField(h2,v,80,"Other Obligations",Normal,OtherObligations,true,0);
-  EditField(h3+30,v,80,"Curr. avg. loan expenses",Normal,CurrAvgLoanExp,true,0);
+  EditField(h3+30,v,80,"Curr. Avg. Loan Expenses",Normal,CurrAvgLoanExp,true,0);
   
   SoftEditField(h,v+=vs,80,"Affordability",ViewOnly,"affordability",true,0,M4Val,0);
   SoftEditField(h3+30,v,80,"Monthly payment/Avg. income 6 m",ViewOnly,"monthpayperavgincome",true,0,M4Val,0);
@@ -417,7 +417,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
 
   Tile(tilenr,600,false,tilenr,Math2); tilenr = tilenr + 1;
   
-  v = 6;
+  v = 16;
   StaticText(h=90,v=15,"Contact",false);
   StaticText(h+=100,v,"Name",false);
   StaticText(h+=140,v,"ID",false);
@@ -537,7 +537,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   
   Tile(tilenr,600,false,tilenr,Beneficial1Name); tilenr = tilenr + 1;
   
-  v = 6;
+  v = 16;
   StaticText(h=90,v,"Name",false);
   StaticText(h+=150,v,"Shares, %",false);
   StaticText(h+=90,v,"Shareholder",false);
@@ -554,42 +554,42 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   
   v = v + 20;
   EditField(h=100,v,130,"Beneficial 1",Normal,Beneficial1Name,false,0);
-  EditField(h+=150,v,70,"",Normal,Beneficial1Shares,false,PasteCurDate);
+  EditField(h+=150,v,70,"",Normal,Beneficial1Shares,false,0);
   EditField(h+=90,v,70,"",Normal,Beneficial1Since,false,PasteCurDate);
   CheckBox(h+=100,v,0,"",Beneficial1Bankr);
   CheckBox(h+=80,v,0,"",Beneficial1PEP);
   CheckBox(h+=80,v,0,"",Beneficial1Sanctions);
   v = v + 30;
   EditField(h=100,v,130,"Beneficial 2",Normal,Beneficial2Name,false,0);
-  EditField(h+=150,v,70,"",Normal,Beneficial2Shares,false,PasteCurDate);
+  EditField(h+=150,v,70,"",Normal,Beneficial2Shares,false,0);
   EditField(h+=90,v,70,"",Normal,Beneficial2Since,false,PasteCurDate);
   CheckBox(h+=100,v,0,"",Beneficial2Bankr);
   CheckBox(h+=80,v,0,"",Beneficial2PEP);
   CheckBox(h+=80,v,0,"",Beneficial2Sanctions);
   v = v + 30;
   EditField(h=100,v,130,"Beneficial 3",Normal,Beneficial3Name,false,0);
-  EditField(h+=150,v,70,"",Normal,Beneficial3Shares,false,PasteCurDate);
+  EditField(h+=150,v,70,"",Normal,Beneficial3Shares,false,0);
   EditField(h+=90,v,70,"",Normal,Beneficial3Since,false,PasteCurDate);
   CheckBox(h+=100,v,0,"",Beneficial3Bankr);
   CheckBox(h+=80,v,0,"",Beneficial3PEP);
   CheckBox(h+=80,v,0,"",Beneficial3Sanctions);
   v = v + 30;
   EditField(h=100,v,130,"Beneficial 4",Normal,Beneficial4Name,false,0);
-  EditField(h+=150,v,70,"",Normal,Beneficial4Shares,false,PasteCurDate);
+  EditField(h+=150,v,70,"",Normal,Beneficial4Shares,false,0);
   EditField(h+=90,v,70,"",Normal,Beneficial4Since,false,PasteCurDate);
   CheckBox(h+=100,v,0,"",Beneficial4Bankr);
   CheckBox(h+=80,v,0,"",Beneficial4PEP);
   CheckBox(h+=80,v,0,"",Beneficial4Sanctions);
   v = v + 30;
   EditField(h=100,v,130,"Beneficial 5",Normal,Beneficial5Name,false,0);
-  EditField(h+=150,v,70,"",Normal,Beneficial5Shares,false,PasteCurDate);
+  EditField(h+=150,v,70,"",Normal,Beneficial5Shares,false,0);
   EditField(h+=90,v,70,"",Normal,Beneficial5Since,false,PasteCurDate);
   CheckBox(h+=100,v,0,"",Beneficial5Bankr);
   CheckBox(h+=80,v,0,"",Beneficial5PEP);
   CheckBox(h+=80,v,0,"",Beneficial5Sanctions);
   v = v + 30;
   EditField(h=100,v,130,"Beneficial 6",Normal,Beneficial6Name,false,0);
-  EditField(h+=150,v,70,"",Normal,Beneficial6Shares,false,PasteCurDate);
+  EditField(h+=150,v,70,"",Normal,Beneficial6Shares,false,0);
   EditField(h+=90,v,70,"",Normal,Beneficial6Since,false,PasteCurDate);
   CheckBox(h+=100,v,0,"",Beneficial6Bankr);
   CheckBox(h+=80,v,0,"",Beneficial6PEP);
