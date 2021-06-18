@@ -17,7 +17,11 @@ begin
 
   if (CIb.DetailedInvoice==1) then begin
     if (i<3 or (IVr.InvType==kInvoiceTypeCredit and i<4)) then begin
-      res = true;
+      if(IVrw.stp==1 and nonblank(IVrw.ArtCode))then begin
+      
+      end else begin
+        res = true;
+      end;
     end;
   end;
 
