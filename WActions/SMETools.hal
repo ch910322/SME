@@ -255,3 +255,10 @@ begin
   CredManCanInvoiceOverdues = res;
   return;
 end;
+
+global
+function Boolean HasB2BCreateOffer()
+begin
+  HasB2BCreateOffer = true;
+  return;
+end;

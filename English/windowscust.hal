@@ -615,7 +615,9 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   SpecMenuGroup("",kSpecMenuGroupTypeExtendedPlusMenu,0); 
   SpecialMenu("E-mail",' ',1,""); 
   SpecialMenu("Credit Agreement",' ',1,"B2BLoanAppCreateCredManDsm"); 
-  SpecialMenu("Offer Email",' ',1,"B2BLoanApplicationMakeEmailOffer"); 
+  if (HasB2BCreateOffer) then begin
+    SpecialMenu("Offer Email",' ',1,"B2BLoanApplicationMakeEmailOffer"); 
+  end;
 
   EndWindow;
 end;
