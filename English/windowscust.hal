@@ -158,7 +158,6 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h2,v+=vs,130,"Customer Email",Normal,eMail,false,0);
   EditField(h2,v+=vs,130,"Customer Telephone",Normal,PhoneNo,false,0);
   EditField(h2,v+=vs,130,"Registration Date",Normal,RegDate,false,PasteCurDate);
-  EditField(h2,v+=vs,130,"Company Status",Normal,CompStatus,false,LACompStatusSClass);//TODO SCLASS
   EditField(h2,v+=vs,130,"Industry",Normal,Industry,false,BNSClass);
   EditField(h2,v+=vs,130,"Payment Guarantee",Normal,PaymGuarant,false,0);
   EditField(h2,v+=vs,130,"Promissory Note With",Normal,Promisory,false,0);
@@ -409,7 +408,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h3+30,v,80,"Curr. Avg. Loan Expenses",Normal,CurrAvgLoanExp,true,0);
   
   SoftEditField(h,v+=vs,80,"Affordability",ViewOnly,"affordability",true,0,M4Val,0);
-  SoftEditField(h3+30,v,80,"Monthly payment/Avg. income 6 m",ViewOnly,"monthpayperavgincome",true,0,M4Val,0);
+  //SoftEditField(h3+30,v,80,"Monthly payment/Avg. income 6 m",ViewOnly,"monthpayperavgincome",true,0,M4Val,0);
 
   Tile(tilenr,400,false,tilenr,Math2); tilenr = tilenr + 1;
   StaticText(30,v=30,"Comments",false);
