@@ -257,3 +257,23 @@ begin
   CredManCanInvoiceOverdues = res;
   return;
 end;
+
+
+global
+procedure B2BLoanApplicationDClassOnWindowRecordChange(Integer wn)
+begin
+  record B2BLoanApplicationVc LAr;
+  string 255 f,f2;
+  
+  //redefined LoanAPP procedure because it was broken B2BLoanApplicationLogics 
+  
+  /*
+  f = WindowActiveField(wn);
+  GetWindowRecord(wn,LAr);
+  RerunWindowDef(wn);
+  UpdateB2BLoanApplicationSoftFields(wn,LAr,"");
+  if (nonblank(f)) then begin
+    WindowFieldGoto(wn,LAr,-1,f,true);
+  end;*/
+  return;
+end;
