@@ -202,7 +202,8 @@ begin
   Integer i,acnt;
   Boolean res;
   
-  SetListString(wn,len("Credit Note"),"Credit Note",false); 
+  SetListString(wn,len("Credit Note"),"Credit Note",false);
+  SetListString(wn,len("Loan Application"),"Loan Application",false);
   res = inner.MailTextRegisterSClassOnOpenWindow(wn);   
   MailTextRegisterSClassOnOpenWindow = false;
   return;
@@ -217,9 +218,10 @@ begin
   if (changedf) then begin
     DeselectWindow(wn,false);
     GetWindowRecord(wn,MailTextr);
-    if (MailTextr.Register=="Credit Note") then begin
-      MailTextr.FileName = "IVCreditVc";
-    end else begin
+    switch(MailTextr.Register)begin
+      case "Credit Note": MailTextr.FileName = "IVCreditVc";
+      case "Loan Application": MailTextr.FileName = "B2BLoanApplicationVc";
+      otherwise
       MailTextr.FileName = StringSetFromString(-3,MailTextr.Register);
     end;
     PutWindowRecord(wn,MailTextr);
@@ -253,12 +255,5 @@ begin
   end;
 
   CredManCanInvoiceOverdues = res;
-  return;
-end;
-
-global
-function Boolean HasB2BCreateOffer()
-begin
-  HasB2BCreateOffer = true;
   return;
 end;

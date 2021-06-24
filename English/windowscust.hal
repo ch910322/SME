@@ -613,7 +613,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   SpecialMenu("Get Property Data",'',6,"B2BAppGetPropertyDataDsm");
   
   SpecMenuGroup("",kSpecMenuGroupTypeExtendedPlusMenu,0); 
-  SpecialMenu("E-mail",' ',1,""); 
+  SpecialMenu("E-mail",' ',1,"CreateMailFromB2BLoanApplicationDsm"); 
   SpecialMenu("Credit Agreement",' ',1,"B2BLoanAppCreateCredManDsm"); 
   if (HasB2BCreateOffer) then begin
     SpecialMenu("Offer Email",' ',1,"B2BLoanApplicationMakeEmailOffer"); 
