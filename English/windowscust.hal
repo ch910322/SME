@@ -175,7 +175,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h3,v+=vs,80,"Admin Fee",Normal,AdminFee,false,0);
   
   v = v + 20;
-  HalPushButton(h3-90,v,h3+10,v+25,"B2BLoanAppCalculate","Evaluation");
+  HalPushButton(h3-90,v,h3+10,v+25,"B2BLoanAppEvaluateBuSettings","Evaluation");
   //HalPushButton(h3-90,v+30,h3+10,v+55,"B2BLoanAppEvaluate","Evaluate");
   
   ButtonFrame(h3+30,v=v+vs,120,3,"Evaluation");
