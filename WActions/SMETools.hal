@@ -277,3 +277,9 @@ begin
   end;*/
   return;
 end;
+
+global
+function boolean HasLoanApplicationDefValues() 
+begin
+  HasLoanApplicationDefValues = true;
+end;
