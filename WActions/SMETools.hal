@@ -202,7 +202,8 @@ begin
   Integer i,acnt;
   Boolean res;
   
-  SetListString(wn,len("Credit Note"),"Credit Note",false); 
+  SetListString(wn,len("Credit Note"),"Credit Note",false);
+  SetListString(wn,len("Loan Application"),"Loan Application",false);
   res = inner.MailTextRegisterSClassOnOpenWindow(wn);   
   MailTextRegisterSClassOnOpenWindow = false;
   return;
@@ -217,9 +218,10 @@ begin
   if (changedf) then begin
     DeselectWindow(wn,false);
     GetWindowRecord(wn,MailTextr);
-    if (MailTextr.Register=="Credit Note") then begin
-      MailTextr.FileName = "IVCreditVc";
-    end else begin
+    switch(MailTextr.Register)begin
+      case "Credit Note": MailTextr.FileName = "IVCreditVc";
+      case "Loan Application": MailTextr.FileName = "B2BLoanApplicationVc";
+      otherwise
       MailTextr.FileName = StringSetFromString(-3,MailTextr.Register);
     end;
     PutWindowRecord(wn,MailTextr);
@@ -254,4 +256,30 @@ begin
 
   CredManCanInvoiceOverdues = res;
   return;
+end;
+
+
+global
+procedure B2BLoanApplicationDClassOnWindowRecordChange(Integer wn)
+begin
+  record B2BLoanApplicationVc LAr;
+  string 255 f,f2;
+  
+  //redefined LoanAPP procedure because it was broken B2BLoanApplicationLogics 
+  
+  /*
+  f = WindowActiveField(wn);
+  GetWindowRecord(wn,LAr);
+  RerunWindowDef(wn);
+  UpdateB2BLoanApplicationSoftFields(wn,LAr,"");
+  if (nonblank(f)) then begin
+    WindowFieldGoto(wn,LAr,-1,f,true);
+  end;*/
+  return;
+end;
+
+global
+function boolean HasLoanApplicationDefValues() 
+begin
+  HasLoanApplicationDefValues = true;
 end;

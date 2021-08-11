@@ -158,7 +158,6 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h2,v+=vs,130,"Customer Email",Normal,eMail,false,0);
   EditField(h2,v+=vs,130,"Customer Telephone",Normal,PhoneNo,false,0);
   EditField(h2,v+=vs,130,"Registration Date",Normal,RegDate,false,PasteCurDate);
-  EditField(h2,v+=vs,130,"Company Status",Normal,CompStatus,false,LACompStatusSClass);//TODO SCLASS
   EditField(h2,v+=vs,130,"Industry",Normal,Industry,false,BNSClass);
   EditField(h2,v+=vs,130,"Payment Guarantee",Normal,PaymGuarant,false,0);
   EditField(h2,v+=vs,130,"Promissory Note With",Normal,Promisory,false,0);
@@ -176,7 +175,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h3,v+=vs,80,"Admin Fee",Normal,AdminFee,false,0);
   
   v = v + 20;
-  HalPushButton(h3-90,v,h3+10,v+25,"B2BLoanAppCalculate","Evaluation");
+  HalPushButton(h3-90,v,h3+10,v+25,"B2BLoanAppEvaluateBuSettings","Evaluation");
   //HalPushButton(h3-90,v+30,h3+10,v+55,"B2BLoanAppEvaluate","Evaluate");
   
   ButtonFrame(h3+30,v=v+vs,120,3,"Evaluation");
@@ -356,6 +355,8 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h2,v+=vs,100,"Current Assets",Normal,CurrentAssets,true,0);
   EditField(h2,v+=vs,100,"Current Liabilities",Normal,CurrentLiabilities,true,0);
   EditField(h2,v+=vs,100,"Current Ratio",Normal,CurRatioPrc,true,0);
+  
+  EditField(h3=700,v=6,100,"Bankruptcy Rating",Normal,BankruptcyRatingCode,true,0);  
 
 /*  
   EditField(h2=365,v,100,"Working Capital",Normal,WorkingCapital,true,0);
@@ -409,7 +410,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h3+30,v,80,"Curr. Avg. Loan Expenses",Normal,CurrAvgLoanExp,true,0);
   
   SoftEditField(h,v+=vs,80,"Affordability",ViewOnly,"affordability",true,0,M4Val,0);
-  SoftEditField(h3+30,v,80,"Monthly payment/Avg. income 6 m",ViewOnly,"monthpayperavgincome",true,0,M4Val,0);
+  //SoftEditField(h3+30,v,80,"Monthly payment/Avg. income 6 m",ViewOnly,"monthpayperavgincome",true,0,M4Val,0);
 
   Tile(tilenr,400,false,tilenr,Math2); tilenr = tilenr + 1;
   StaticText(30,v=30,"Comments",false);
@@ -614,9 +615,9 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   SpecialMenu("Get Property Data",'',6,"B2BAppGetPropertyDataDsm");
   
   SpecMenuGroup("",kSpecMenuGroupTypeExtendedPlusMenu,0); 
-  SpecialMenu("E-mail",' ',1,""); 
+  SpecialMenu("E-mail",' ',1,"CreateMailFromB2BLoanApplicationDsm"); 
   SpecialMenu("Credit Agreement",' ',1,"B2BLoanAppCreateCredManDsm"); 
-  if (HasB2BCreateOffer) then begin  
+  if (HasB2BCreateOffer) then begin
     SpecialMenu("Offer Email",' ',1,"B2BLoanApplicationMakeEmailOffer"); 
   end;
 
