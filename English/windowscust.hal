@@ -356,7 +356,8 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h2,v+=vs,100,"Current Liabilities",Normal,CurrentLiabilities,true,0);
   EditField(h2,v+=vs,100,"Current Ratio",Normal,CurRatioPrc,true,0);
   
-  EditField(h3=700,v=6,100,"Bankruptcy Rating",Normal,BankruptcyRatingCode,true,0);  
+  EditField(h3=700,v=6,100,"Bankruptcy Rating Code",Normal,BankruptcyRatingCode,true,0);  
+  EditField(h3=700,v+=vs,100,"Bankruptcy Rating Value",Normal,BankruptcyRating,true,0);  
 
 /*  
   EditField(h2=365,v,100,"Working Capital",Normal,WorkingCapital,true,0);
