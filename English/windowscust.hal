@@ -382,9 +382,9 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   
   h3 = 700;
   CheckBox(h3,v=130,0,"Unpaid Debts Count",SpiderwebNeg);
-  CheckBox(h3,v=130,0,"Has Arrests",HasArrests);
-  CheckBox(h3,v=130,0,"Has Claims",HasClaims);
-  CheckBox(h3,v=130,0,"Has Lawsuits",HasLawsuits);
+  CheckBox(h3,v+=vs,0,"Has Arrests",HasArrests);
+  CheckBox(h3,v+=vs,0,"Has Claims",HasClaims);
+  CheckBox(h3,v+=vs,0,"Has Lawsuits",HasLawsuits);
   CheckBox(h3,v+=vs,0,"Sanctions",CESanctions);
   
   /*h3 = 565;
