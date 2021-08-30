@@ -296,10 +296,22 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   
   Tile(tilenr,290,true,tilenr,MajorityOwner1); tilenr = tilenr + 1;  
   
-  StaticText(h=60,v=15,"Contact Code",false);
+  h=540;
+  StaticText(h+=130,v=10,"Unpaid",false);
+  StaticText(h+=50,v,"Has",false);
+  StaticText(h+=50,v,"Has",false);
+  StaticText(h+=50,v,"Has",false);
+  
+  StaticText(h=60,v+=16,"Contact Code",false);
   StaticText(h+120,v,"Name",false);
   StaticText(h+=340,v,"ID",false);
-  StaticText(h+=130,v,"Unpledged Assets Teur",false);
+  StaticText(h+=120,v,"Unpledged Assets Teur",false);
+  
+  StaticText(h+=130,v,"Debts Count",false);
+  StaticText(h+=70,v,"Arrests",false);
+  StaticText(h+=50,v,"Claims",false);
+  StaticText(h+=50,v,"Lawsuits",false);
+  
 
   v = v + 30;
   
@@ -307,36 +319,60 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h+=80,v,200,"",Normal,Surety1Name,false,0);
   EditField(h+=220,v,100,"",Normal,Surety1ID,false,0);
   EditField(h+=140,v,120,"",Normal,Surety1TEUR,false,0);
+  CheckBox(h+=130,v,0,"",SpiderwebNeg);
+  CheckBox(h+=70,v,0,"",HasArrests);
+  CheckBox(h+=50,v,0,"",HasClaims);
+  CheckBox(h+=50,v,0,"",HasLawsuits);
   v = v + 30;
 
   EditField(h=80,v,60,"Guarantor 2",Normal,SuretyProvider2,false,B2BLoanApp_CUSClass);
   EditField(h+=80,v,200,"",Normal,Surety2Name,false,0);
   EditField(h+=220,v,100,"",Normal,Surety2ID,false,0);
   EditField(h+=140,v,120,"",Normal,Surety2TEUR,false,0);
+  CheckBox(h+=130,v,0,"",Surety2SpiderwebNeg);
+  CheckBox(h+=70,v,0,"",Surety2HasArrests);
+  CheckBox(h+=50,v,0,"",Surety2HasClaims);
+  CheckBox(h+=50,v,0,"",Surety2HasLawsuits);
   v = v + 30;
 
   EditField(h=80,v,60,"Guarantor 3",Normal,SuretyProvider3,false,B2BLoanApp_CUSClass);
   EditField(h+=80,v,200,"",Normal,Surety3Name,false,0);
   EditField(h+=220,v,100,"",Normal,Surety3ID,false,0);
   EditField(h+=140,v,120,"",Normal,Surety3TEUR,false,0);
+  CheckBox(h+=130,v,0,"",Surety3SpiderwebNeg);
+  CheckBox(h+=70,v,0,"",Surety3HasArrests);
+  CheckBox(h+=50,v,0,"",Surety3HasClaims);
+  CheckBox(h+=50,v,0,"",Surety3HasLawsuits);
   v = v + 30;
 
   EditField(h=80,v,60,"Guarantor 4",Normal,SuretyProvider4,false,B2BLoanApp_CUSClass);
   EditField(h+=80,v,200,"",Normal,Surety4Name,false,0);
   EditField(h+=220,v,100,"",Normal,Surety4ID,false,0);
   EditField(h+=140,v,120,"",Normal,Surety4TEUR,false,0);
+  CheckBox(h+=130,v,0,"",Surety4SpiderwebNeg);
+  CheckBox(h+=70,v,0,"",Surety4HasArrests);
+  CheckBox(h+=50,v,0,"",Surety4HasClaims);
+  CheckBox(h+=50,v,0,"",Surety4HasLawsuits);
   v = v + 30;
 
   EditField(h=80,v,60,"Guarantor 5",Normal,SuretyProvider5,false,B2BLoanApp_CUSClass);
   EditField(h+=80,v,200,"",Normal,Surety5Name,false,0);
   EditField(h+=220,v,100,"",Normal,Surety5ID,false,0);
   EditField(h+=140,v,120,"",Normal,Surety5TEUR,false,0);
+  CheckBox(h+=130,v,0,"",Surety5SpiderwebNeg);
+  CheckBox(h+=70,v,0,"",Surety5HasArrests);
+  CheckBox(h+=50,v,0,"",Surety5HasClaims);
+  CheckBox(h+=50,v,0,"",Surety5HasLawsuits);
   v = v + 30;
 
   EditField(h=80,v,60,"Guarantor 6",Normal,SuretyProvider6,false,B2BLoanApp_CUSClass);
   EditField(h+=80,v,200,"",Normal,Surety6Name,false,0);
   EditField(h+=220,v,100,"",Normal,Surety6ID,false,0);
   EditField(h+=140,v,120,"",Normal,Surety6TEUR,false,0);
+  CheckBox(h+=130,v,0,"",Surety6SpiderwebNeg);
+  CheckBox(h+=70,v,0,"",Surety6HasArrests);
+  CheckBox(h+=50,v,0,"",Surety6HasClaims);
+  CheckBox(h+=50,v,0,"",Surety6HasLawsuits);
   v = v + 30;
 
   
@@ -381,10 +417,10 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   CheckBox(h2,v+=vs,0,"Shareholders Credit History",ShCredHist);
   
   h3 = 700;
-  CheckBox(h3,v=130,0,"Unpaid Debts Count",SpiderwebNeg);
+  /*CheckBox(h3,v=130,0,"Unpaid Debts Count",SpiderwebNeg);
   CheckBox(h3,v+=vs,0,"Has Arrests",HasArrests);
   CheckBox(h3,v+=vs,0,"Has Claims",HasClaims);
-  CheckBox(h3,v+=vs,0,"Has Lawsuits",HasLawsuits);
+  CheckBox(h3,v+=vs,0,"Has Lawsuits",HasLawsuits);*/
   CheckBox(h3,v+=vs,0,"Sanctions",CESanctions);
   
   /*h3 = 565;
