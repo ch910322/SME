@@ -319,7 +319,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h+=80,v,200,"",Normal,Surety1Name,false,0);
   EditField(h+=220,v,100,"",Normal,Surety1ID,false,0);
   EditField(h+=140,v,120,"",Normal,Surety1TEUR,false,0);
-  CheckBox(h+=130,v,0,"",SpiderwebNeg);
+  CheckBox(h+=130,v,0,"",Surety1SpiderwebNeg);
   CheckBox(h+=70,v,0,"",HasArrests);
   CheckBox(h+=50,v,0,"",HasClaims);
   CheckBox(h+=50,v,0,"",HasLawsuits);
@@ -410,18 +410,21 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   CheckBox(h,v+=vs,0,"Last Debt Repayment",LastRepaymentDateChk);
   CheckBox(h,v+=vs,0,"Ongoing Asset Arrests",OngoingAssetArrests);
   CheckBox(h,v+=vs,0,"Ongoing Court Cases Defendant",OngoingCourtCases);
+  CheckBox(h,v+=vs,0,"Sanctions",CESanctions);
   
   CheckBox(h2,v=130,0,"Historical Asset Arrests",HistoricalAssetArrests);
   CheckBox(h2,v+=vs,0,"Historical Court Cases",HistoricalCourtCases);
   CheckBox(h2,v+=vs,0,"Active Default To Sodra",ActDefSodra);
-  CheckBox(h2,v+=vs,0,"Shareholders Credit History",ShCredHist);
+  CheckBox(h2,v+=vs,0,"Shareholders Credit History",ShCredHist); 
+  CheckBox(h2,v+=vs,0,"Spider Web Negative",SpiderwebNeg);
+
   
   h3 = 700;
   /*CheckBox(h3,v=130,0,"Unpaid Debts Count",SpiderwebNeg);
   CheckBox(h3,v+=vs,0,"Has Arrests",HasArrests);
   CheckBox(h3,v+=vs,0,"Has Claims",HasClaims);
   CheckBox(h3,v+=vs,0,"Has Lawsuits",HasLawsuits);*/
-  CheckBox(h3,v+=vs,0,"Sanctions",CESanctions);
+  
   
   /*h3 = 565;
   CheckBox(h,v+=vs,0,"Ongoing Court Cases",OngoingCourtCases);
