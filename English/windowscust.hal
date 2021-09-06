@@ -210,7 +210,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   TileButton(tilenr,"Person Evaluation"); tilenr = tilenr + 1;  
   TileButton(tilenr,"Comments"); tilenr = tilenr + 1;  
   TileButton(tilenr,"Shareholders"); tilenr = tilenr + 1;  
-  TileButton(tilenr,"Planned Fees"); tilenr = tilenr + 1;  
+  //TileButton(tilenr,"Planned Fees"); tilenr = tilenr + 1;  
   TileButton(tilenr,"BO"); tilenr = tilenr + 1;  
   tilenr = 1;
 
@@ -235,7 +235,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   StaticText(h+=80,v,"",false);
   
   v = v + 20;
-  EditField(h=100,v,60,"General manager",Normal,BoardMember1,false,B2BLoanApp_CUSClass);
+  EditField(h=100,v,60,"General manager 1",Normal,BoardMember1,false,B2BLoanApp_CUSClass);
   EditField(h+=90,v,110,"",Normal,BoardMember1Name,false,0);
   EditField(h+=140,v,90,"",Normal,BMID1,false,0);
   EditField(h+=110,v,70,"",Normal,BMDOB1,false,PasteCurDate);
@@ -243,6 +243,26 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   CheckBox(h+=100,v,0,"",BMBankr1);
   CheckBox(h+=80,v,0,"",BMPEP1);
   CheckBox(h+=80,v,0,"",BMSanctions1);
+//  EditField(h+=140,v,60,"",Normal,BMDebt1,true,0);
+  v = v + 30;
+  EditField(h=100,v,60,"General manager 2",Normal,BoardMember11,false,B2BLoanApp_CUSClass);
+  EditField(h+=90,v,110,"",Normal,BoardMember11Name,false,0);
+  EditField(h+=140,v,90,"",Normal,BMID11,false,0);
+  EditField(h+=110,v,70,"",Normal,BMDOB11,false,PasteCurDate);
+  EditField(h+=90,v,70,"",Normal,BMSince11,false,PasteCurDate);
+  CheckBox(h+=100,v,0,"",BMBankr11);
+  CheckBox(h+=80,v,0,"",BMPEP11);
+  CheckBox(h+=80,v,0,"",BMSanctions11);
+//  EditField(h+=140,v,60,"",Normal,BMDebt1,true,0);
+  v = v + 30;
+  EditField(h=100,v,60,"General manager 3",Normal,BoardMember12,false,B2BLoanApp_CUSClass);
+  EditField(h+=90,v,110,"",Normal,BoardMember12Name,false,0);
+  EditField(h+=140,v,90,"",Normal,BMID12,false,0);
+  EditField(h+=110,v,70,"",Normal,BMDOB12,false,PasteCurDate);
+  EditField(h+=90,v,70,"",Normal,BMSince12,false,PasteCurDate);
+  CheckBox(h+=100,v,0,"",BMBankr12);
+  CheckBox(h+=80,v,0,"",BMPEP12);
+  CheckBox(h+=80,v,0,"",BMSanctions12);
 //  EditField(h+=140,v,60,"",Normal,BMDebt1,true,0);
   v = v + 30;
   EditField(h=100,v,60,"Board Member 1",Normal,BoardMember2,false,B2BLoanApp_CUSClass);
@@ -305,7 +325,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   StaticText(h=60,v+=16,"Contact Code",false);
   StaticText(h+120,v,"Name",false);
   StaticText(h+=340,v,"ID",false);
-  StaticText(h+=120,v,"Unpledged Assets Teur",false);
+  StaticText(h+=120,v,"Unpledged Assets EUR",false);
   
   StaticText(h+=130,v,"Debts Count",false);
   StaticText(h+=70,v,"Arrests",false);
@@ -552,7 +572,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   CheckBox(h+=80,v,0,"",ShareHolder6PEP);
   CheckBox(h+=80,v,0,"",ShareHolder6Sanctions);
   
-  Tile(tilenr,600,false,tilenr,Math); tilenr = tilenr + 1;
+  /*Tile(tilenr,600,false,tilenr,Math); tilenr = tilenr + 1;
   
   MatrixBegin(10,v=24,-50,-20,-,99);
   Flip(0);
@@ -576,7 +596,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   v=v+ vs; VTab(-35,v,-16,v+vs,ToolFlip,2,"B");
   v=v+ vs; VTab(-35,v,-16,v+vs,ToolFlip,3,"C");
   InsertRowTest;
-  DeleteRowTest;
+  DeleteRowTest;*/
   
   Tile(tilenr,600,false,tilenr,Beneficial1Name); tilenr = tilenr + 1;
   
