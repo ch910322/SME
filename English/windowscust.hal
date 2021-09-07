@@ -570,7 +570,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   CheckBox(h+=100,v,0,"",ShareHolder6Bankr);
   CheckBox(h+=100,v,0,"",ShareHolder6ActDeb);
   CheckBox(h+=60,v,0,"",ShareHolder6PEP);
-  CheckBox(h+=40,v,0,"",ShareHolder6Sanctions);
+  CheckBox(h+=40,v,0,"",ShareHolder61Sanctions);
   
   /*Tile(tilenr,600,false,tilenr,Math); tilenr = tilenr + 1;
   
@@ -664,7 +664,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   EditField(h+=90,v,70,"",Normal,Beneficial6Since,false,PasteCurDate);
   CheckBox(h+=100,v,0,"",Beneficial6Bankr);
   CheckBox(h+=80,v,0,"",Beneficial6PEP);
-  CheckBox(h+=80,v,0,"",Beneficial6Sanctions);
+  CheckBox(h+=80,v,0,"",Beneficial61Sanctions);
 
   SpecialMenu("Fill Data from rekvizitai.lt",' ',1,"");
   SpecialMenu("Fill Data from SoDra",' ',2,"");
