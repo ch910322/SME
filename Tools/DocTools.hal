@@ -188,3 +188,10 @@ begin
   Ext_CreateInvoiceText = true;
   return;
 end;
+
+global
+function Boolean IsOmegaCustomer()
+begin
+  IsOmegaCustomer = false;
+  return;
+end;
