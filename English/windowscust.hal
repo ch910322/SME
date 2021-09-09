@@ -531,7 +531,7 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
   StaticText(h+=40,v,"PEP",false);
   StaticText(h+=30,v,"Sanctions",false);
   StaticText(h+=40,v,"",false);
-  StaticText(h+=40,v,"Has Calims",false);
+  StaticText(h+=40,v,"Has Claims",false);
   StaticText(h+=40,v,"",false);
   v=v+13;
   StaticText(h=90,v,"",false);
