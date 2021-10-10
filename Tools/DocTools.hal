@@ -78,9 +78,9 @@ begin
   RepSpec.f6 = CompYear.VATNr;//F_EGETMOMSNR
   RepSpec.f7 = CompYear.Addr0;//F_EGENADRESS
   if (IVr.InvType==kInvoiceRowTypeCredit) then begin
-    RepSpec.vals4 = -(abovehiddenbase + abovehiddenvat);
+    RepSpec.vals4 = -(abovehiddenbase/* + abovehiddenvat*/);
   end else begin
-    RepSpec.vals4 = abovehiddenbase + abovehiddenvat;
+    RepSpec.vals4 = abovehiddenbase/* + abovehiddenvat*/;
   end;
   RepSpec.f10 = IVr.Sum4;
   openamount = GetCustomerOpenAmount(IVr.CustCode,IVr);
@@ -189,17 +189,9 @@ begin
   return;
 end;
 
-
 global
-function Boolean Ext_MailTextRow(record IVVc IVr,string filename,string registername,string language,var row MailTextVc resMTrw,var Integer IgnoreRecordDetails)
+function Boolean IsOmegaCustomer()
 begin
-  Boolean res;
-
-  if (IVr.InvType==kInvoiceTypeCredit) then begin
-    MailTextRow("IVCreditVc","",language,resMTrw,IgnoreRecordDetails);
-    res = true;
-  end;
-
-  Ext_MailTextRow = res;
+  IsOmegaCustomer = false;
   return;
 end;
