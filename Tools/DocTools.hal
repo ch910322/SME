@@ -195,3 +195,10 @@ begin
   IsOmegaCustomer = false;
   return;
 end;
+
+global
+function Boolean IsSMECustomer()
+begin
+  IsSMECustomer = true;
+  return;
+end;
