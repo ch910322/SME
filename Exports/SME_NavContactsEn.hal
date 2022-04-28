@@ -1,0 +1,68 @@
+//JP: HAL-2694
+global
+updating procedure SME_NavContactsEn(record RcVc RepSpec)
+begin
+  record CUVc CUr;
+  record ContactRelVc ContactRelr;
+  record CountryVc Countryr;
+  string 30 afr,ato;
+  boolean TrHs,loopPart;
+  vector string 20 v_countries;
+  integer i;
+
+  if(nonblank(RepSpec.f1))then begin
+    afr = FirstInRange(RepSpec.f1,10);
+    ato = LastInRange(RepSpec.f1,10);
+    loopPart = true;
+  end;
+
+  TrHs = true;
+  while(LoopKey("Code",CUr,1,TrHs))begin
+    if(nonblank(RepSpec.f1))then begin
+      if(CUr.Code > ato)then begin
+        TrHs = false;
+      end;
+    end;
+    if(TrHs)then begin
+      i = i + 1;
+      // ExportString(i);
+      ExportString("");
+      ExportString(CUr.Code);
+      ExportString(USetStr(CUr.CustType + 9000014));
+      ExportString("");
+      ExportString(CUr.Name);
+      ExportString(CUr.RegNr1);
+      ExportString(CUr.VATNr);
+      ExportString("");
+      ExportString("");
+      ExportString(CUr.InvAddr0);
+      ExportString(CUr.InvAddr1);
+      ExportString(CUr.InvAddr3);
+      ExportString(CUr.InvAddr2);
+      if(blank(v_countries["CUr.CountryCode"]))then begin
+        Countryr.Code = CUr.CountryCode;
+        if(ReadFirstMain(Countryr,1,true))then begin
+          v_countries["CUr.CountryCode"] = Countryr.Comment;
+        end else begin
+          v_countries["CUr.CountryCode"] = CUr.CountryCode;
+        end;
+      end;
+      ExportString(v_countries["CUr.CountryCode"]);
+      ExportString(CUr.Person);
+      ExportString(CUr.Phone);
+      ExportString(CUr.Mobile);
+      ExportString(CUr.eMail);
+      ContactRelr.ContactCode = CUr.Code;
+      if(ReadFirstKey("ContactCode",ContactRelr,1,true))then begin
+        ExportString(ContactRelr.CustCode);
+      end else begin
+        ExportString("");
+      end;
+      NewLine;
+      
+    end;
+  end;
+
+  return;
+end;
+//:JP

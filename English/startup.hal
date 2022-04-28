@@ -7,11 +7,23 @@ begin
 /* Sales ledger */
 	Report("SME Invoice Journal",SME_IVJRClass,SME_InvoiceRn,0,modSL);
 	Setting("VAT Mask VAT Codes",VATMaskVATCodeTClass,modSY);
+  //JP: HAL-2694
+  Export("Navision Contacts Export",SME_NavContactsEClass,SME_NavContactsEn,modDBMain);
+  Export("Navision Contact Bank Export",SME_NavContactBanksEClass,SME_NavContactBanksEn,modDBMain);
+  // Export("Navision Contracts (Credit Agreements) Export",SME_NavContractsEClass,SME_NavContractsEn,modDBMain);
+  // Export("Navision Schedule Lines Export",SME_NavContactsEClass,SME_NavContactsEn,modDB);
+  // Export("Navision Applicants Export",SME_NavContactsEClass,SME_NavContactsEn,modDB);
+  // Export("Navision Contract Collaterals Export",SME_NavContactsEClass,SME_NavContactsEClass,modDB);
+  // Export("Navision Collaterals Export",SME_NavContactsEClass,SME_NavContactsEClass,modDB);
+  //:JP
 
   SString(9000010,"Agreement");
   SString(9000011,"Item");
   SString(9000012,"Documents no signed");
   SString(9000013,"Invoices already created");
+
+  SString(9000014,"Company"); //JP: HAL-2694
+  SString(9000015,"Person"); //JP: HAL-2694
 
   StrSetAdd(3);
   StrSetText(AllowActivateCredMan,"Allow activating Credit Agreements");

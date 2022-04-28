@@ -749,3 +749,39 @@ WindowBegin("Loan Application",B2BLoanApplicationDClass,CGview,-);
 
   EndWindow;
 end;
+
+//JP: HAL-2694
+window SME_NavContactsEClass:1
+  wtag("language","ENG"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  real h,v;
+  WindowBegin("Navision Contacts Export",SME_NavContactsEClass,CGEcW,RcType);
+  SetWRect(20,80,450,200);
+  EditFieldTL(h=130,v=6,200,"Contacts",M4Str,Normal,30 ,f1,false,CUSClass);
+  StaticText(h=130,v+36,"May Leave blank",false);
+  EndWindow;
+end;
+
+window SME_NavContactBanksEClass:1
+  wtag("language","ENG"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  real h,v;
+  WindowBegin("Navision Customer Bank Export",SME_NavContactBanksEClass,CGEcW,RcType);
+  SetWRect(20,80,450,200);
+  EditFieldTL(h=130,v=6,200,"Contacts",M4Str,Normal,30 ,f1,false,CUSClass);
+  StaticText(h=130,v+36,"May Leave blank",false);
+  EndWindow;
+end;
+
+window SME_NavContractsEClass:1
+  wtag("language","ENG"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  real h,v;
+  WindowBegin("Navision Contracts (Credit Agreements) Export",SME_NavContactsEClass,CGEcW,RcType);
+  SetWRect(20,80,450,200);
+  EditFieldTL(h=130,v=6,200,"Contracts",M4Str,Normal,30 ,f1,false,COSClass);
+  StaticText(h=130,v+36,"May Leave blank",false);
+  EndWindow;
+end;
+
+//:JP

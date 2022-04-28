@@ -1,0 +1,72 @@
+procedure ExportCUBankLine(string code,integer bankcnt,string bankcode,var vector string v_banknames,string ibancode)
+begin
+  record BankVc Bankr;
+
+  ExportString(code);
+  ExportString(bankcnt);
+  ExportString(bankcode);
+  if(blank(v_banknames[bankcode]))then begin
+    Bankr.Code = bankcode;
+    if(ReadFirstMain(Bankr,1,true))then begin
+      v_banknames[bankcode] = Bankr.Name;
+    end else begin
+      v_banknames[bankcode] = bankcode;
+    end;
+  end;
+  ExportString(v_banknames[bankcode]);
+  ExportString(ibancode);
+  NewLine;
+
+  return 
+end;
+
+global
+updating procedure SME_NavContactBanksEn(record RcVc RepSpec)
+begin
+  record CUVc CUr;
+  record CUBankAccVc BAr;
+  row CUBankAccVc BArw;
+  string 30 afr,ato;
+  boolean TrHs;
+  vector string 255 v_banknames;
+  integer i,j,rwc;
+
+  if(nonblank(RepSpec.f1))then begin
+    afr = FirstInRange(RepSpec.f1,10);
+    ato = LastInRange(RepSpec.f1,10);
+    CUr.Code = afr;
+  end else begin
+    CUr.Code = "";
+  end;
+
+  TrHs = true;
+  while(LoopKey("Code",CUr,1,TrHs))begin
+    if(nonblank(RepSpec.f1))then begin
+      if(CUr.Code > ato)then begin
+        TrHs = false;
+      end;
+    end;
+    j = 0;
+    if(TrHs)then begin
+      j = j + 1;
+      if(nonblank(CUr.BankAccount) or nonblank(CUr.AccOperator))then begin
+        ExportCUBankLine(CUr.Code,j,CUr.AccOperator,v_banknames,CUr.BankAccount);  
+      end;
+      if(nonblank(CUr.Bank))then begin
+        j = j + 1;
+        ExportCUBankLine(CUr.Code,j,CUr.AccOperator,v_banknames,CUr.Bank);
+      end;
+      BAr.CustCode = CUr.Code;
+      if (ReadFirstMain(BAr,1,true)) then begin
+        rwc = MatRowCnt(BAr);
+        for(i=0;i<rwc;i=i+1)begin
+          MatRowGet(BAr,i,BArw);
+          ExportCUBankLine(CUr.Code,j+i,BArw.BankCode,v_banknames,BArw.BankAccount);
+        end;
+      end;
+
+    end;
+  end;
+
+  return;
+end;

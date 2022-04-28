@@ -1,0 +1,126 @@
+//JP: HAL-2694
+global
+procedure SME_NavContractsEn(record RcVc RepSpec)
+begin
+  record CUVc CUr;
+  record CredManTypeVc CredManTyper;
+  record CredManVc CredManr;
+  row CredManVc CredManrw;
+  val tval;
+  longint sernr;
+  string 30 tstr,daysinyear;
+  boolean TrHs,print;
+  integer i,j,rwc;
+  vector string 40 v_credtypes;
+  vector boolean v_addedcredtype;
+
+
+  if(RepSpec.long1 > -1)then begin
+    sernr = RepSpec.long1;
+  end;
+
+  CredManr.SerNr = sernr;
+  TrHs = true;
+  while(LoopMain(CredManr,1,TrHs)) begin
+    print = true;
+    if(RepSpec.long1 > -1)then begin
+      if(CredManr.SerNr != sernr)then begin
+        TrHs = false;
+      end;
+    end;
+    if(CredManr.Status != 4)then begin
+      print = false;
+    end;
+    if(TrHs and print)then begin
+      i = i + 1;
+      // ExportString(i);
+      // ExportString("");
+      ExportString(CredManr.OfficialSerNr);
+      ExportString(CredManr.TransDate);
+      ExportString(""); //Status
+      ExportString("30");
+      ExportString(CredManr.TransDate);
+      ExportString(CredManr.Type);
+      ExportVal(CredManr.InvSum4,M4Val);
+      ExportString(""); //Syndicate
+      ExportString("Fixed");
+      ExportString(CredManr.IntRate);
+      rwc = MatRowCnt(CredManr);
+      tval = 0;
+      for(j=0;j<rwc;j=j+1)begin
+        MatRowGet(CredManr,j,CredManrw);
+        if(CredManrw.ArtCode == "Contract")then begin
+          tval = CredManrw.Sum;
+          j = rwc;
+        end;
+      end;
+      ExportVal(tval,M4Val);
+      ExportString(""); //Establishement Fee Settlement
+      ExportString(""); //Installment Fee
+      ExportVal(CredManr.OverduePercentage,M4Qty);
+      ExportString(""); //Overdue Int. Grace Period (days)
+      ExportVal(CredManr.BuyoutFeePrc,M4Qty);
+      ExportString(""); //Interest Compensation
+      ExportString(""); //Interest Compensation From Date
+      ExportString(""); //Interest Compensation To Date
+      ExportString(""); //Deminimis Amount
+      ExportString(""); //Deminimis Approval date
+      ExportString(CredManr.startDate);
+      ExportString(CredManr.DisburseUntil);
+      ExportString(""); //CL Schedule Applies
+      ExportString(""); //CL Schedule Starting Date
+      ExportString(CredManr.FirstInvDate);
+      ExportString(AddMonth(CredManr.FirstInvDate,CredManr.PrincipleDelayMonths));
+      ExportString(""); //Activation Date
+      ExportString(""); //Date of Activation
+      ExportString(CredManr.InstalmentMonths);
+      ExportString(CredManr.endDate);
+      ExportString("MONTHLY");
+      ExportString(CredManr.endDate);
+      ExportString(StringFromSet(2001,CredManr.InstalmentType));
+      tstr = "";
+      if(!v_addedcredtype[CredManr.Type])then begin
+        CredManTyper.Code = CredManr.Type;
+        ReadFirstMain(CredManTyper,1,true);
+        if(CredManTyper.DaysInYear > 0)then begin
+          daysinyear = CredManTyper.DaysInYear;
+        end else begin
+          daysinyear = "360";
+        end;
+        v_addedcredtype[CredManr.Type] = true;
+        switch (CredManTyper.DaysInMonth) begin
+          case 0:
+            tstr = "360/30";
+          case 1:
+            tstr = "Act/" & daysinyear;
+          case 2:
+            tstr = "30/" & daysinyear;
+        end;
+        v_credtypes[CredManr.Type] = tstr;
+      end;
+      ExportString(v_credtypes[CredManr.Type]);
+      ExportVal(CredManr.LastMonthPrinc,M4Val);
+      ExportString(""); //Balloon %
+      ExportString(""); //CL Repayment type
+      ExportString(""); //CL Repayment Period (days)
+      ExportString(""); //Customer No.
+      ExportString(CredManr.CustCode);
+      CUr.Code = CredManr.CustCode;
+      ReadFirstMain(CUr,1,true);
+      ExportString(CUr.Name);
+      ExportString(CUr.RegNr1);
+      ExportString(CUr.VATNr);
+      ExportString(CUr.CountryCode);
+      switch(CredManr.AnnualRate) begin
+        case 0:
+          ExportString("NO");
+        case 1:
+          ExportString("YES");
+      end;
+      NewLine;
+    end;
+  end;
+
+  return;
+end;
+//:JP
